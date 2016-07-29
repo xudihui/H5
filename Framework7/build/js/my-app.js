@@ -34,6 +34,16 @@ $$(document).on('ajaxComplete', function (e) {
     myApp.hideIndicator();
 });
 
+
+
+$$(window).on('load', function() {	
+	$$('#loading').on('click',function(){
+		myApp.showIndicator();
+		setTimeout(function(){myApp.hideIndicator();},3500);
+		
+	});
+});
+
 // Callbacks for specific pages when it initialized
 /* ===== Modals Page events  ===== */
 myApp.onPageInit('modals', function (page) {

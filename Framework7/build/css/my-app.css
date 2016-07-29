@@ -12,7 +12,7 @@ i.icon.icon-f7 {
     color: #02c33c;
 }
 
-
+/** loading 修改  by 徐迪辉 2016-07-29  ***/
 .preloader-white {
     background-image: url(../img/load.gif);
     background-size: 50px 50px;
@@ -47,7 +47,7 @@ i.icon.icon-f7 {
     line-height: 108px;
     text-align: center;
 }
-
+/** loading 修改  by 徐迪辉 2016-07-29  ***/
 
 
 

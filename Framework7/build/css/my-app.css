@@ -13,6 +13,42 @@ i.icon.icon-f7 {
 }
 
 
+.preloader-white {
+    background-image: url(../img/load.gif);
+    background-size: 50px 50px;
+    width: 60px!important;
+    height: 60px!important;
+    background-repeat: no-repeat;
+    background-position: center -2px;
+    -webkit-animation: none!important;
+    text-align: center;
+}
+.preloader-indicator-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 8px;
+    margin-left: -30px;
+    margin-top: -30px;
+    background: rgba(255,255,255,.9);
+    z-index: 13000;
+    border-radius: 5px;
+}
+.preloader-indicator-overlay {
+    visibility: visible;
+    opacity: 1;
+    background: rgba(0,0,0,.4);
+}
+
+.preloader-white:after {
+    content: '拼命加载中';
+    font-size: .65rem;
+    color: #666;
+    line-height: 108px;
+    text-align: center;
+}
+
+
 
 
 

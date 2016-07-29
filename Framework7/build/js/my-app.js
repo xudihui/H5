@@ -1,5 +1,5 @@
 var myApp = new Framework7({
-    modalTitle: 'Framework7',
+    modalTitle: '提示框',
     animateNavBackIcon: true,
 });
 

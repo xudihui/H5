@@ -1,3 +1,22 @@
+i.icon.icon-f7 {
+    width: 29px;
+    height: 29px;
+    background-image: url("../img/smk.png");
+    border-radius: 6px;
+}
+
+.color-green.button:not(.button-fill), .color-green.buttons-row .button, .theme-green .button:not(.button-fill) {
+    border-color: #02c33c;
+}
+.theme-green a, .theme-green .item-link.list-button {
+    color: #02c33c;
+}
+
+
+
+
+
+/**demo 展示css begin**/
 .panel {
   background: #222;
   color: #dddddd;

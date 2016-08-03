@@ -6,6 +6,19 @@ var myApp = new Framework7({
 // Expose Internal DOM library
 var $$ = Dom7;
 
+var VALIDATE = { //校验正则
+		mobile:/^0?1[3-8|4|5|7|8][0-9]\d{8}$/,  //手机号码校验
+		english:/^[A-Za-z]+$/,  //纯英文校验
+		card:/^[0-9a-zA-Z]*$/   //纯英文或者纯数字或者英文数字组合，适用于卡号校验
+};
+
+String.prototype.hide = function(index){  //扩展字符串原型方法，隐藏某个字符为*号，默认第二位，适用于不宜显示全部字段的场景
+	   var self = this.replace(/ /g,''); //去除空格
+	   var arr = self.split('');
+	   arr[ index||1 ] = ' * '; //默认为第二个字符，当然也可以传入参数，位数从0开始计算
+	   return arr.join('');
+};
+
 // Add main view
 var mainView = myApp.addView('.view-main', {
     // Enable Dynamic Navbar for this view

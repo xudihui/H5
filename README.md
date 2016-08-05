@@ -16,7 +16,7 @@ F7是 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优�
 
 ***
 
-因为目前界内比较流行并遍地开花的主要还是 JS+CSS 模式的框架，今天主要了解对比了一下几款主流H5框架。
+因为目前界内比较流行并遍地开花的主要还是 JS+CSS 模式的框架，使用F7之前主要了解对比了以下几款主流H5框架。
 
 * [Bootstrap](https://github.com/twbs/bootstrap/)
 * [AUI(APICloud)](https://github.com/liulangnan/aui)

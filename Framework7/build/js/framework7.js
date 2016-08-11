@@ -465,7 +465,7 @@
             // Store to history main view's url
             if (view.url) {
                 view.history.push(view.url);
-				app.params.history.push(url); //a标签点击的历史记录更新
+				app.params.history.push(view.url); //a标签点击的历史记录更新
             }
         
             // Touch events

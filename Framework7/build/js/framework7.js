@@ -132,7 +132,7 @@
             materialRippleElements: '.ripple, a.link, a.item-link, .button, .modal-button, .tab-link, .label-radio, .label-checkbox, .actions-modal-button, a.searchbar-clear, .floating-button',
             // Auto init
             init: true,
-            history:[],//新增一个全局历史记录，为了微信刷新时候判断前进后退
+            history: [],//新增一个全局历史记录，为了微信刷新时候判断前进后退
         };
         // Extend defaults with parameters
         for (var param in params) {

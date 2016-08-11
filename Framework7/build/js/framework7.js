@@ -7644,7 +7644,7 @@
                     /* 由于SPA框架缘故，当页面数据是由前面路由直接传递过来时，数据不在url中体现，这时候刷新当前页面会出现数据清空
                      * 微信页面当三级、四级页面刷新时，会清空之前历史记录，此时全部处理成回到首页。 2016-08-11 xudihui
                      * */
-                    else if (stateUrl!='' && view.history.length>=2 && app.params.history.length==0) { //刷新后app.params.history会被情况，它是每次a的href跳转进行添加。
+                    else if (stateUrl!='' && view.history.length>=2 && app.params.history.length==1) { //刷新后app.params.history会被情况，它是每次a的href跳转进行添加。
                     	app.router.load(view, {url:view.history[0], animatePages: animatePages, pushState: false,reload:true});
                       	location.hash = '';
                       	location.reload(); //强制刷新首页

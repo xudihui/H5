@@ -7236,7 +7236,7 @@
                     }
                     else{
                     	view.router.load(options);
-                    	app.params.history.push(url); //历史记录更新
+                    	app.params.history.push(url); //a标签点击的历史记录更新
                     }
                 }
             }

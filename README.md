@@ -21,9 +21,22 @@ var VALIDATE = { //校验正则
 		card:/^[0-9a-zA-Z]*$/   //纯英文或者纯数字或者英文数字组合，适用于卡号校验
 };
 ```
-
-
 * 关键信息打星号
+```javascript
+String.prototype.setStar = function(index){  //扩展字符串原型方法，隐藏指定字符为*号，默认第二位，适用于不宜显示全部字段的场景
+	   var self = this.replace(/ /g,''); //去除空格
+	   
+	   if(VALIDATE.mobile.test(self)){//是手机号码，进入手机号码加*号
+		   var arr = /\d{3}(\d{4})/.exec(self)[1];//获取需要打星号手机四位字段
+		   return self.split(arr).join('****');
+	   }
+	   else{
+		   var arr = self.split('');
+		   arr[ index||1 ] = ' * '; //默认为第二个字符，当然也可以传入参数，位数从0开始计算
+		   return arr.join('');	   
+	   }
+};
+```
 
 ## 小结
 作为一名在前端摸爬打滚4年的攻城士，这几年也在开发过程中使用了一些前端框架。今年已经开始专门负责H5的开发，也希望从优秀框架中沉淀出一套符合公司当前项目需求，并能提高前后端开发效率和用户体验的框架，由于专业技能有限，新建一个git项目，通过`issues`和`wiki`来推动H5的同事们一起参与进来，让框架沉淀迭代起来。

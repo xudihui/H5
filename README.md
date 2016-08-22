@@ -23,7 +23,7 @@ var VALIDATE = { //校验正则
 ```
 * 关键信息打星号
 ```javascript
-String.prototype.setStar = function(index){  //扩展字符串原型方法，隐藏指定字符为*号，默认第二位，适用于不宜显示全部字段的场景
+String.prototype.setStars = function(index){  //扩展字符串原型方法，隐藏指定字符为*号，默认第二位，适用于不宜显示全部字段的场景
 	   var self = this.replace(/ /g,''); //去除空格
 	   
 	   if(VALIDATE.mobile.test(self)){//是手机号码，进入手机号码加*号

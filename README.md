@@ -26,7 +26,7 @@ var VALIDATE = { //校验正则
 String.prototype.setStars = function(index){  //扩展字符串原型方法，隐藏指定字符为*号，默认第二位，适用于不宜显示全部字段的场景
 	   var self = this.replace(/ /g,''); //去除空格
 	   
-	   if(VALIDATE.mobile.test(self)){//是手机号码,手机号码加*号
+	   if(VALIDATE.mobile.test(self)){//是手机号码,手机号码加*号 
 		   var arr = /\d{3}(\d{4})/.exec(self)[1];//获取需要打星号手机四位字段
 		   return self.split(arr).join('****');
 	   }

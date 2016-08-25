@@ -3237,15 +3237,16 @@
             app.openModal(modal);
             return modal[0];
         };
-        app.alert = function (text, title, callbackOk) {
+        app.alert = function (text, title, callbackOk, buttonText) {//增加了buttonText
             if (typeof title === 'function') {
                 callbackOk = arguments[1];
+                buttonText = arguments[2];
                 title = undefined;
             }
             return app.modal({
                 text: text || '',
                 title: typeof title === 'undefined' ? app.params.modalTitle : title,
-                buttons: [ {text: app.params.modalButtonOk, bold: true, onClick: callbackOk} ]
+                buttons: [ {text: buttonText || app.params.modalButtonOk, bold: true, onClick: callbackOk} ]
             });
         };
         app.confirm = function (text, title, callbackOk, callbackCancel) {

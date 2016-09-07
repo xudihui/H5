@@ -68,7 +68,6 @@ String.prototype.setStars = function(index){  //扩展字符串原型方法，�
       	location.reload(); //强制刷新首页
     } 
 ```
-
 ## 前端代码规范(关于编码规范，没有标准答案，没有正确对错，只有更合理、更有效。)
  
 ### 一：原则

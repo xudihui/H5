@@ -54,7 +54,7 @@ String.prototype.setStars = function(index){  //扩展字符串原型方法，�
 	        text: text || '',
 	        title: typeof title === 'undefined' ? app.params.modalTitle : title,
 	        buttons: [ {text: buttonText || app.params.modalButtonOk, bold: true, onClick: callbackOk} ]
-	    });
+	    });  
 	};
 ```
 * H5网页刷新路由bug

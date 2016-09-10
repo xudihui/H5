@@ -104,7 +104,7 @@ String.prototype.setStars = function(index){  //扩展字符串原型方法，�
 
 ***
 
-因为目前界内比较流行并遍地开花的主要还是 JS+CSS 模式的框架，使用F7之前主要了解对比了以下几款主流H5框架。
+因为目前界内比较流行并遍地开花的主要还是 JS+CSS 模式的框架，使用F7之前主要了解对比了以下几款主流H5框架。 
 
 * [Bootstrap](https://github.com/twbs/bootstrap/)
 * [AUI(APICloud)](https://github.com/liulangnan/aui)

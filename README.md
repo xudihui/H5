@@ -12,7 +12,7 @@ F7是 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优�
 | ------------ | ------------ | ------------ |
 |你只需要一个基本的HTML布局，并且把Framework7的CSS和JS文件引入即可！Framework7不会强制你写任何自定义的标签，也不会通过JS来生成任何额外的内容。你不需要通过JS或者JSON来写页面，只需要普通的HTML就可以。      | 有大量可以直接使用的UI组件和工具，比如modals,popup,action sheet, popover, list views, media lists, tabs, side panels, layout grid, preloader, form elements 等。大部分的组件你都完全不需要写任何JS代码 |XHR\Caching\History\Preloading这几个功能的组合可以让你的应用的路由功能变得非常强大。F7通过Ajax来加载新页面，并且可以通过缓存配置让页面的加载速度变得非常快。可以完全使用HTML做视图展示，json来数据传递，实现前后端彻底解耦。 |
 
-##新增组件
+##新增组件 
 * 正则校验  
 ```javascript
 var VALIDATE = { //校验正则

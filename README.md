@@ -41,7 +41,7 @@ String.prototype.setStars = function(index){  //扩展字符串原型方法，�
 	   }
 };
 ```
-##扩展框架方法
+##扩展框架方法 
 * alert  增加自定义按钮文字
 ```javascript
 	app.alert = function (text, title, callbackOk, buttonText) {

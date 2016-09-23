@@ -4,7 +4,7 @@
 F7是 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB，它并不能兼容所有的设备。只专注于为 iOS 和 安卓4.5以上提供最好的体验，在[市民卡微信](http://weixin.96225.com/weixin/hzt/front "非微信端不支持openId绑定相关业务")2.5版本中也对此框架进行了深入实践并取得了更好的用户体验。
 >了解更多F7内容，大家可以直接进入[官网](http://framework7.taobao.org/docs/)和[git](https://github.com/nolimits4web/Framework7)
  
-***
+*** 
  
 ##特性 
 

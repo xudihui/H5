@@ -1,0 +1,448 @@
+
+/*
+
+*
+{
+	margin: 0 auto;
+	padding: 0px;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+	border-top: 0;
+	position: relative;
+}*/
+
+body
+{	
+	background-color:#F3F3F3;
+}
+.hiddenForm
+{
+	display: none;
+}
+
+#Main
+{
+	width:100%;
+	height:100%;
+	text-align:center;
+	background-color:inherit;
+	padding: 0 0 0 0;
+}
+
+#TitleBar
+{
+	height:auto;
+	background-color:#2E61BC;
+	padding: 4px 4px 4px 4px;
+	overflow: hidden;
+}
+
+#LogoBg_Topbar
+{
+    width: 100%;
+    height: 60px;
+    background: #2E61BC;
+    text-align: center;
+    overflow: hidden;
+	line-height: 60px;
+	font-size: 20px;   
+	color: #FFFFFF; 
+}
+
+#LogoBg_Topbar #Logo
+{
+ 
+    height: 45px; /* */ 
+    width: 204px;
+    margin: 7px auto 0;/**/
+    background: url('') no-repeat;
+    background-position:center; 
+    background-size:contain; 
+    -moz-background-size:contain; 
+    -webkit-background-size:contain; 
+    -o-background-size:contain;
+	cursor: pointer; /* mouse over show hand */
+}
+
+#LoginTab
+{
+	width: 100%;
+	height: 37px;
+}
+
+#TabTitle
+{
+	width: 100%;
+	height: 23px;
+	border-color: Black;
+	border-width: 1px;
+	border-radius: 5px 5px 5px 5px;
+	border-spacing: 1px;
+}
+
+#TabTitle table
+{
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+}
+
+#TabTitle td
+{
+	width: 33.3%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 33px;
+	font-size: 16px;
+	font-weight: bolder;
+	letter-spacing: 0px;
+}
+
+#TabTitle .on
+{
+	color: #2D63BD;
+	background-color: #F3F3F3;
+}
+
+#TabTitle .out
+{
+	cursor: pointer;
+	color: #ABAFB6;
+	background-color: #1F4881;
+}
+
+#TabTitle .left
+{
+	border-radius:5px 0px 0px 5px;
+}
+
+#TabTitle .mid
+{
+	border-bottom-width: 0px;
+	border-top-width: 0px;
+	border-left-width: 1px;
+	border-left-color: #46648E;
+	border-right-width: 1px;
+	border-right-color: #466483;
+	border-radius:0px 0px 0px 0px;
+}
+
+#TabTitle .right
+{
+	border-radius:0px 5px 5px 0px;
+}
+
+#InputBlock
+{
+	width: 100%;
+	height: auto;
+}
+
+#InputInfoTable
+{
+	height: auto;
+	padding: 0px 15px 0px 15px;
+}
+#InputInfoTable table
+{
+	width: 100%;
+	height: 42px;
+	border: none;
+	border-collapse: collapse;
+}
+
+#AppDownloadInfo
+{
+	width: 100%;
+	height: auto;
+}
+
+#BusinessTool
+{
+	width: auto;
+	height: auto;
+}
+#BusinessTool Table
+{
+	cursor: pointer;
+	width: auto;
+}
+#BusinessTool Table td
+{
+	text-align: center;
+	vertical-align: middle;
+	line-height: 30px;
+	font-size: 16px;
+	font-weight: bolder;
+	letter-spacing: 0px;
+	color: #00589F;
+}
+#BusinessTool Table td span
+{
+	font-weight: 900;
+	font-size: 20px;
+}
+
+
+#AppBanner
+{
+    background: #FEFEFE;
+    height: 25px;
+    /*width: 100%;*/
+    padding: 0px 2px 24px 2px;
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+}
+#AppBanner a
+{
+    display: block;
+    width: 40px;
+    height: 15px;
+    background: #FF9300;
+    padding: 5px;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -moz-border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+#AppBanner #CloseBtn
+{
+	cursor: pointer;
+}
+
+#LoginBar
+{
+	height: auto;
+	padding: 0px 15px 0px 15px;
+}
+
+
+#LoginBtn
+{
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    line-height: normal;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 0 0 0 0;
+    background-color: #1D76C7;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -o-border-radius: 6px;
+    -ms-border-radius: 6px;
+    border: 1px solid #4876b0;
+}
+#LoginBtn2
+{
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    line-height: normal;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 0 0 0 0;
+    background-color: #1D76C7;
+    border-radius: 0px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -o-border-radius: 6px;
+    -ms-border-radius: 6px;
+    border: 1px solid #4876b0;
+}
+#LoginBtn:hover
+{
+    background-color: #1362AA;
+}
+@media only screen and (min-width:480px)
+{
+    .LoginBtn
+    {
+        width: 444px;
+    }
+}
+#LoginBtn td
+{
+	height: auto;
+	text-align: center;
+	line-height: 38px;
+	font-size: 20px;
+	font-weight: bolder;
+	letter-spacing: 8px;
+	color: White;
+	/*text-shadow: 1px 0px #000;*/
+}
+
+.HorizontalDiv
+{
+	width: auto;
+	height: 5px;
+}
+
+.InputLine
+{
+	width: 100%;
+    height: 36px;/* */
+    padding-bottom:2px;/* */
+    padding-top:2px;/* */
+
+}
+.InputButton{
+	width: 60px;
+    height: 30px;
+}
+.InputLine .left
+{
+    height: 30px;
+    width: 67px;
+    font-size: 16px;
+    color: #4f4f4f;
+    font-weight: bold;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #CDCDCD;
+}
+.InputLine .right
+{
+    padding-left: 15px;
+    height: 28px; /*���޸�*/
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #CDCDCD;
+}
+.InputLine .right_1
+{
+    padding-left: 10px;
+    height: 30px;
+    text-align: right;
+    padding-top: 2px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #CDCDCD;
+}
+
+.AutoAlignLabel
+{
+	width: 100%;
+	height: auto; 
+	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;
+}
+
+.AutoAlignLabel .BeginWord
+{
+	text-align: left;
+	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;
+}
+
+.AutoAlignLabel .MidWord
+{
+	text-align: center;
+	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;
+}
+
+.AutoAlignLabel .EndWord
+{
+	text-align: right;
+	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;
+}
+
+.line5px
+{
+    height: 5px;
+}
+.line60px
+{
+    height: 60px;
+}
+.line10px
+{
+    height: 10px;
+}
+.line0px
+{
+    height: 0px;
+}
+
+.ocx_style{border:1px solid #7F9DB9; width:155px; height:25px;margin-top:5px;float:left;}
+
+.NoneInput90
+{
+    width: 65%;
+    height: 28px; /* ���޸�*/
+    text-align: left;
+    border:1px solid #999999;
+    /*border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    
+    border-bottom-style: none;*/
+    background-color: #F3F3F3;
+    font-size: 13px;
+    color: #646464;
+    font-family: Arial;
+}
+
+#IDTypeC
+{
+	color: #2D63BD;
+	width: 100%;
+	font-size: 16px;
+	font-weight: bold;
+	-webkit-appearance:none;
+	background: url('') no-repeat;
+    background-position:right; 
+    background-size:auto 22px; 
+    -moz-background-size:auto 22px; 
+    -webkit-background-size:auto 22px; 
+    -o-background-size:auto 22px;
+}
+.OpenLink
+{
+    height: 100px;
+    text-align: center;
+    overflow: hidden;
+	line-height: 60px;
+	font-size: 20px;  
+	font: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;	 
+}

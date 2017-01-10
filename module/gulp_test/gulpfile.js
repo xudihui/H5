@@ -92,13 +92,8 @@
                cb();
             }) 
     }); 
-var gp = gulp;
-gp.task("taskName",function(){
-    // 把1.js和2.js合并压缩为main.js，输出到dest/js目录下
-    gp.src('./src/js/*.js').pipe(concat('main.js')).pipe(uglify()).pipe(gp.dest('./build/js'));
-})
 
-
+    
     gulp.task('baoer-uglify', function (cb) {
         gulp.src(f7.jsFiles)
             .pipe(concat('baoer.min.js'))  //简单合并文件，并生成文件名

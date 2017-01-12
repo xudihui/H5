@@ -5,7 +5,7 @@
 
 }
 .input-wrap .send{
-  border-left:1px solid #ccc;
+border-left:1px solid #ccc;
 line-height:1.4em;
 padding-left:10px;
 }
@@ -14,8 +14,7 @@ padding-left:10px;
 .input-wrap input{width:7em;}
 .input-wrap.flex{padding:5px;}
 view.flex{
-	display:flex;
-	padding: 20px 20rpx ; 
+	display:flex; 
 	position:relative;
 	overflow:hidden
 }
@@ -73,15 +72,17 @@ view.border::after{
   transform: scaleY(0.5);
 }
 view.border text{
-line-height:1.4rem;
+line-height:3.4rem;
+padding-left:10px
 }
 view.border input{
-	padding-left:15rpx
+	padding:1rem
 }
 	
-text.font{
+view.border text.font{
 	width:1em;
 	display:inline-block;
+  padding:0
 }
 page{background: #efeff4;font-size:14px}
 view.wrap{margin:20rpx}

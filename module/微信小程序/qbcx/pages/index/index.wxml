@@ -1,0 +1,54 @@
+<import src="../../src/wetoast.wxml"/>
+
+
+<modal  confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalOk" bindcancel="modalCancle">
+  <view> 请输入{{_mobile}}的验证码 </view>
+  <view class='input-wrap flex'><input maxlength='6' focus="true" bindinput="updateCode" placeholder='请输入验证码' value="{{code}}"></input><text class='send'>{{time}}</text></view>
+  <view class='small'> 验证完的手机号可在市民卡app登录使用</view>
+</modal>
+<form bindsubmit="formBindsubmit">
+<view class="border">
+	<view class="section flex first">
+	  <text>手机号:</text><input name='tel' type="idcard" maxlength="11" placeholder="请输入手机号码" />
+	</view>
+	<view class="section flex">
+	  <text>卡<text class='font'></text>号:</text><input name='card' maxlength="10" placeholder="请输入卡号" />
+	  <image bindtap='showCard' class='prompt' src='../../images/prompt.png' style="width: 19px; height: 19px;" ></image>
+	</view>
+</view>
+
+<view class="wrap">
+	<button type="primary" formType="submit">查询</button>
+	<text>提示：</text>
+	<text>1、目前支持查询杭州市民卡和杭州通卡（包括纪念卡和异形卡），不支持查询挂失的卡</text>
+	<text>2、仅支持查询三个月内的电子钱包交易记录</text>
+	<text>3、由于数据传输到系统存在延迟，查询结果仅供参考</text>
+</view>
+</form>
+<view class="frame" style="{{css}}" bindtap='hideCard'>
+ <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+ </swiper>
+</view>
+<template is="wetoast" data="{{...__wetoast__}}"/>
+
+
+<!-- 
+<button type="primary" bindtap="setNavigationBarTitle">设置navigationBarTitle</button>
+<button type="primary" bindtap="showNavigationBarLoading">设置navigationBarLoading加载状态</button>
+<button type="primary" bindtap="hiddenNavigationBarLoading">隐藏navigationBarLoading加载状态</button>
+<button type="warn" bindtap="navigateTo"> 保留当前页跳转</button>
+<button type="warn" bindtap="redirectTo"> 不保留当前页面跳转</button>
+<button type="warn" bindtap="navigateBack">退回到上一个页面</button>
+
+<button type="warn" bindtap="tapName">进入test目录</button>
+<button type="warn" bindtap="tapChange">进入change目录</button>
+<button type="warn" bindtap="tapList">进入list目录</button>
+<view wx:for="{{array}}"> {{index}}: {{item.message}}</view> 
+<view wx:if="{{ boyname == 'Tom' }}">Hello, Tom!</view> <view wx:elif="{{ girlname == 'Anna' }}">Hello, Anna!</view> <view wx:else>You neither Tom nor Anna.</view>
+-->

@@ -1,0 +1,1 @@
+<view class="btn-load-more" bindtap="loadMore">  {{ tipText }} </view> 

@@ -1,0 +1,25 @@
+<view   class="record-top"  >   
+	<text >钱包余额</text>  
+	<text class="record-text-money">￥278.85</text> 
+	<image bindtap='showTip' class='prompt' src='../../images/prompt.png' style="width: 19px; height: 19px;" ></image>
+	<view class="record-title">最近交易记录：</view>
+</view> 
+
+
+<view   class="record-wrap"  >  
+<block wx:for="{{ Trades }}">  
+	<view   class="record-text"  >   
+	  <text class="record-text-content">交易时间： <text class="text-dark">{{item.TRADETIME}}</text>  </text>  
+	  <text class="record-text-content">交易类型： <text class="text-dark">{{item.TRADETYPE==1 ? '消费':'充值'}}</text>  </text> 
+	  <text class="record-text-content">交易金额： <text class="text-dark">{{item.TRADETYPE==1 ? '-':'+'}}{{item.MONEY/100}}</text>  </text> 
+	</view> 
+</block> 
+</view> 
+
+<!--
+<modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2" bindcancel="modalChange2">
+  <view> 没有标题没有取消的对话框 </view>
+  <view> 内容可以插入节点 </view>
+</modal>
+-->
+<view class="btn-load-more" bindtap="loadMore">  {{ tipText }} </view> 

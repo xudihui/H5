@@ -1,0 +1,65 @@
+.record-wrap{padding-top:100px}
+.record-top{background:#fff;text-align:center;position:fixed;
+height:60px;
+width:750rpx;
+z-index:2;
+padding-top:10px;
+border-bottom:30px solid #efeff4
+}
+.record-text-money{
+	color: #ff4e00;
+    font-size: 1.8rem;
+}
+.record-title{position:absolute;left:10px;bottom:-25px;}
+.record-top text{display:block}
+
+page{background: #efeff4;font-size:14px;color:#444}
+.record-text::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  right: auto;
+  bottom: auto;
+  height: 1px;
+  width: 100%;
+  background-color: #ccc;
+  display: block;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+
+}
+.record-text .record-text-content{
+	display:block;
+	position:relative;
+	padding:10px 20rpx;
+}
+
+
+.record-text .text-dark{
+	color:#222
+}
+.record-text-content::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  right: auto;
+  top: auto;
+  height: 1px;
+  width: 100%;
+  background-color: #ccc;
+  display: block;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.record-text{
+	margin:0 0 20rpx 0;
+	background:#fff;
+	position:relative
+}
+.btn-load-more{font-size:12px;text-align:center;padding:10px 0;}

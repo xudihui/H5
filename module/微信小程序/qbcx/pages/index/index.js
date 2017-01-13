@@ -53,7 +53,9 @@ Page({
     css:'display:none',
     modalHidden: true,
     _mobile:'',
+    mobile:'',
     time:'发送中...',
+    timer:null,
     code:''
   },
   onLoad:function(option){
@@ -76,13 +78,14 @@ Page({
   },
   formBindsubmit:function(e){
     var self = this;
+    console.log(self)
+    var flag = false;
     var showTips = function(t){
       self.wetoast.toast({
           title: t,
           duration: 2000
       })
     }
-    var mobileSaved = sessionStorage.getItem('mobile')||''
     var mobile = e.detail.value.tel;
     var cardNumber = e.detail.value.card;
     if(!mobile){return showTips('请输入您的手机号')}
@@ -93,26 +96,46 @@ Page({
     }else{
       if(!REG.cardNumber.hzt.test(cardNumber)){return showTips('输入的卡号不存在，请重新输入')}
     }
-    var _mobile = mobile.setStars();//将手机号转星
-    self.setData({_mobile:_mobile});
-    self.setData({ modalHidden: false});
 
-    var countDown = function(obj){      
-      var wait = 60;
-      var timer;
-      clearInterval(timer);
-      timer=setInterval(function(){
-        if(wait==0){
-          clearInterval(timer)
-          self.setData({time:'重新发送'});
-          wait=null;
-        }else{
-          self.setData({time:'重新发送('+wait+'s)'});
-          wait--;
-        }
-      },1000)
-    };
-    countDown();
+    try {
+     var value = wx.getStorageSync('mobile') || '';
+     if (value==mobile) {
+      flag = true;
+     }
+    } catch (e) {
+      // Do something when catch error
+    }
+    if(!flag){
+
+      var _mobile = mobile.setStars();//将手机号转星
+      self.setData({_mobile:_mobile,mobile:mobile,code:'',modalHidden: false});
+      var countDown = function(obj){    
+        self.setData({time:'发送中...'});  
+        var wait = 60;
+        clearInterval(self.data.timer);
+        var timer=setInterval(function(){
+          if(wait==0){
+            clearInterval(timer)
+            self.setData({time:'重新发送'});
+            wait=null;
+          }else{
+            self.setData({time:'重新发送('+wait+'s)'});
+            wait--;
+          }
+        },1000);
+        self.setData({timer:timer});
+      };
+      countDown();
+
+    }
+    else{
+      wx.navigateTo({
+      url: '../record/index'
+      })
+    }
+
+
+
     wx.request({
       url: 'https://weixin.96225.com/weixin/financial/fronthtml',
       /*
@@ -148,6 +171,10 @@ Page({
    var code = this.data.code;
    if(!code){return showTips('请输入您收到的验证码')}
    if(!REG.code.test(code)){return showTips('请输入正确的验证码')}   
+      try {
+        wx.setStorageSync('mobile', self.data.mobile)
+      } catch (e) {    
+      }
     this.setData({
       modalHidden: true
     });

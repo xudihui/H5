@@ -1,9 +1,6 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/test/index",
-    "pages/change/index",
-    "pages/list/index",
     "pages/record/index",
     "pages/logs/logs"
   ],

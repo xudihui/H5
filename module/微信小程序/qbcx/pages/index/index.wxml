@@ -3,7 +3,7 @@
 
 <modal  confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalOk" bindcancel="modalCancle">
   <view> 请输入{{_mobile}}的验证码 </view>
-  <view class='input-wrap flex'><input maxlength='6' focus="true" bindinput="updateCode" placeholder='请输入验证码' value="{{code}}"></input><text class='send'>{{time}}</text></view>
+  <view class='input-wrap flex'><input maxlength='6' focus="true" bindinput="updateCode" placeholder='请输入验证码' value="{{code}}" type="idcard"></input><text class='send'>{{time}}</text></view>
   <view class='small'> 验证完的手机号可在市民卡app登录使用</view>
 </modal>
 <form bindsubmit="formBindsubmit">

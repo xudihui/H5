@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<import src="../../src/wetoast.wxml"/>
+
+<view class="page__hd">
+    <view class="page__title">WeToast 是仿照微信小程序提供的 showToast 功能，提供视觉一致的增强插件，弥补小程序 showToast 功能上的不足（如只能显示success、loading两种icon，且icon不可去除，持续时间最大10秒等）。</view>
+</view>
+<view class="page_bd">
+    <view class="btn-area">
+        <button class="btn" bindtap="onImgToast">仅图片</button>
+        <button class="btn-code" bindtap="onCode" data-type="img">code</button>
+    </view>
+    <view class="btn-area">
+        <button class="btn" bindtap="onTitleToast">仅标题</button>
+        <button class="btn-code" bindtap="onCode" data-type="title">code</button>
+    </view>
+    <view class="btn-area">
+        <button class="btn" bindtap="onTimeToast">持续5秒</button>
+        <button class="btn-code" bindtap="onCode" data-type="time">code</button>
+    </view>
+    <view class="btn-area">
+        <button class="btn" bindtap="onFullToast">完整演示</button>
+        <button class="btn-code" bindtap="onCode" data-type="full">code</button>
+    </view>
+</view>
+<view class="footer footer_fixed-bottom">
+    <view class="footer__links">
+        <navigator url="../about/about" class="footer__link">About</navigator>
+    </view>
+    <view class="footer__text">wetoast by kiinlam</view>
+</view>
+
+<!-- wetoast -->
+<template is="wetoast" data="{{...__wetoast__}}"/>

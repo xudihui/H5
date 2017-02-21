@@ -9,10 +9,10 @@
 <form bindsubmit="formBindsubmit">
 <view class="border">
 	<view class="section flex first">
-	  <text>手机号:</text><input name='tel' type="idcard" maxlength="11" placeholder="请输入手机号码" />
+	  <text>手机号:</text><input name='tel' value="15067425400" type="idcard" maxlength="11" placeholder="请输入手机号码" />
 	</view>
 	<view class="section flex">
-	  <text>卡<text class='font'></text>号:</text><input name='card' maxlength="10" placeholder="请输入卡号" />
+	  <text>卡<text class='font'></text>号:</text><input name='card' maxlength="16" placeholder="请输入卡号" />
 	  <image bindtap='showCard' class='prompt' src='../../images/prompt.png' style="width: 19px; height: 19px;" ></image>
 	</view>
 </view>

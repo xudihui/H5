@@ -1,5 +1,9 @@
 //index.js
 //获取应用实例
+//
+//
+var AES = require('../../src/AES.js'); //加密模块引入
+
 var file = 'pages/test/index';
 var REG ={
     mobile: /^0?1[3-8|4|5|7|8][0-9]\d{8}$/,
@@ -62,7 +66,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     this.type = option.type
     this.setData({type:this.type})
-
+    
     //创建可重复使用的toast实例，并附加到this上，通过this.wetoast访问
     new app.WeToast()
   },
@@ -123,42 +127,16 @@ Page({
             wait--;
           }
         },1000);
-        self.setData({timer:timer});
+        self.setData({timer:timer,cardNumber:cardNumber});
       };
       countDown();
 
     }
     else{
       wx.navigateTo({
-      url: '../record/index'
+      url: '../record/index?CardNumber='+cardNumber
       })
     }
-
-
-
-    wx.request({
-      url: 'https://weixin.96225.com/weixin/financial/fronthtml',
-      /*
-      data: {
-        "request":"dka2Q1HPGTjBDGJBmwUby/TNDz4imz0I2DjE8BwdUOFjxDG4A188DePF8RE2R1fxt8c/N1Rn7R8qobG6+ArtsVwKfqdGpfjB1qA+z3hToCRG0jVe5IFoWYAEInlHRfXB"
-      },
-      */
-      header: {
-          'content-type': 'application/json',
-          'appId': 'com.smk.h5.tg',
-      },
-      success: function(res) {
-        console.log(res.data);
-        /*
-        wx.navigateTo({
-         url: '../record/index'
-        })
-       */
-      }
-    })
-
-
-
   },
   modalOk: function(e) {
     var self = this;
@@ -179,7 +157,7 @@ Page({
       modalHidden: true
     });
     wx.navigateTo({
-    url: '../record/index'
+    url: '../record/index?CardNumber='+self.data.cardNumber
     })
 
   },

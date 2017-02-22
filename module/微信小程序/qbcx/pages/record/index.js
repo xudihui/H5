@@ -119,9 +119,9 @@ Page({
     loadMore: function() {
         
         var that = this;
-        if(that.data.tipText == '没有更多了'){
+        if(that.data.tipText == '没有更多啦'){
             wx.showToast({
-                title: '已经没有更多了！',
+                title: '已全部载入',
                 icon: 'success',
                 duration: 2000
             });         

@@ -3,8 +3,9 @@
 //
 //
 var AES = require('../../src/AES.js'); //加密模块引入
-
+var CONFIG = require('../../src/config.js'); //请求地址模块引入
 var file = 'pages/test/index';
+var MOBILE = '';
 var REG ={
     mobile: /^0?1[3-8|4|5|7|8][0-9]\d{8}$/,
     cardNumber:{
@@ -41,6 +42,57 @@ String.prototype.removeAllSpace = function(){
 }
 
 
+      var countDown = function(self,mobile,cardNumber){    
+        self.setData({time:'发送中...'});  
+    wx.showToast({
+        title: '验证码发送中...',
+        icon: 'loading',
+        duration: 6000
+    });         
+    wx.request({    
+        url: CONFIG.loginSend,    
+        method: 'GET',    
+        data: {
+          "request":AES('{\"mobile\":\"'+mobile+'\",\"channelId\":\"'+'qd010'+'\",\"activitycode\":\"'+'wb_qb'+'\",\"userSystem\":\"'+'0028'+'\"}')
+        },
+        header: {
+         'content-type': 'application/json',
+         'appId': 'com.smk.h5.tg',
+         'channelId':'qd010',
+         'activitycode':'wb_qb'
+        },      
+        success: function (res) {  
+         wx.hideToast();   
+          var wait = 60;
+          clearInterval(self.data.timer);
+          var timer=setInterval(function(){
+            if(wait==0){
+              clearInterval(timer)
+              self.setData({time:'重新发送'});
+              wait=null;
+            }else{
+              self.setData({time:'重新发送('+wait+'s)'});
+              wait--;
+            }
+          },1000);
+          self.setData({timer:timer,cardNumber:cardNumber,sendType:res.data.sendType});   
+        },
+        fail: function (res) {  
+         wx.hideToast();   
+         wx.showModal({
+            content: '暂时无法发送验证码！',
+            confirmText:'知道了',
+            showCancel:false,
+            success: function(res) {
+                if (res.confirm) {
+                console.log('用户点击确定')
+                }
+            }
+            })   
+        }
+   });         
+
+      };
 
 let app = getApp();
 var wetoast;
@@ -80,9 +132,14 @@ Page({
       code: e.detail.value
     })
   },
+  sendCode: function(e) {
+    var self = this;
+    if(self.data.time == '重新发送'){
+      countDown(self,self.data.mobile,self.data.cardNumber)
+    }
+  },
   formBindsubmit:function(e){
     var self = this;
-    console.log(self)
     var flag = false;
     var showTips = function(t){
       self.wetoast.toast({
@@ -100,7 +157,6 @@ Page({
     }else{
       if(!REG.cardNumber.hzt.test(cardNumber)){return showTips('输入的卡号不存在，请重新输入')}
     }
-
     try {
      var value = wx.getStorageSync('mobile') || '';
      if (value==mobile) {
@@ -113,23 +169,11 @@ Page({
 
       var _mobile = mobile.setStars();//将手机号转星
       self.setData({_mobile:_mobile,mobile:mobile,code:'',modalHidden: false});
-      var countDown = function(obj){    
-        self.setData({time:'发送中...'});  
-        var wait = 60;
-        clearInterval(self.data.timer);
-        var timer=setInterval(function(){
-          if(wait==0){
-            clearInterval(timer)
-            self.setData({time:'重新发送'});
-            wait=null;
-          }else{
-            self.setData({time:'重新发送('+wait+'s)'});
-            wait--;
-          }
-        },1000);
-        self.setData({timer:timer,cardNumber:cardNumber});
-      };
-      countDown();
+
+      if(!self.data.sendType || mobile!=MOBILE){ 
+         MOBILE = mobile; //设置上次发验证码的手机号
+         return countDown(self,mobile,cardNumber)
+      }
 
     }
     else{
@@ -147,18 +191,61 @@ Page({
       })
     }
    var code = this.data.code;
+   var mobile = this.data.mobile;
    if(!code){return showTips('请输入您收到的验证码')}
    if(!REG.code.test(code)){return showTips('请输入正确的验证码')}   
-      try {
-        wx.setStorageSync('mobile', self.data.mobile)
-      } catch (e) {    
-      }
-    this.setData({
-      modalHidden: true
-    });
-    wx.navigateTo({
-    url: '../record/index?CardNumber='+self.data.cardNumber
-    })
+
+   wx.showToast({
+        title: '验证码校验中...',
+        icon: 'loading',
+        duration: 6000
+    });         
+    wx.request({    
+        url: CONFIG.loginNoPwd,    
+        method: 'GET',    
+        data: {
+          "request":AES('{\"mobile\":\"'+mobile+'\",\"userSystem\":\"'+'0028'+'\",\"veriCode\":\"'+code+'\",\"channelId\":\"'+'qd010'+'\",\"activitycode\":\"'+'wb_qb'+'\",\"sendType\":\"'+self.data.sendType+'\"}')
+        },
+        header: {
+         'content-type': 'application/json',
+         'appId': 'com.smk.h5.tg',
+         'channelId':'qd010',
+         'activitycode':'wb_qb'
+        },      
+        success: function (res) {  
+         wx.hideToast();  
+          if(res.data.retCode=='9000'){
+            try {
+              wx.setStorageSync('mobile', self.data.mobile)
+            } catch (e) {    
+            }            
+            self.setData({
+             modalHidden: true,
+             sendType:false
+            });
+            wx.navigateTo({
+             url: '../record/index?CardNumber='+self.data.cardNumber
+            })
+          }else{
+            showTips(res.data.retMsg)
+          }
+
+        },
+        fail: function (res) {  
+         wx.hideToast();   
+         wx.showModal({
+            content: '暂时无法校验验证码！',
+            confirmText:'知道了',
+            showCancel:false,
+            success: function(res) {
+                if (res.confirm) {
+                console.log('用户点击确定')
+                }
+            }
+            })   
+        }
+   });       
+
 
   },
   modalCancle: function(e) {

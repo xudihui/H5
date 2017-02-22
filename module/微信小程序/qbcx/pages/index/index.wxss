@@ -1,7 +1,7 @@
 
 /**index.wxss**/
 .small{font-size:12px;}
-.input-wrap{border:1px solid #333;margin:12px 0;justify-content:space-between;
+.input-wrap{border:1px solid #999;margin:12px 0;justify-content:space-between;
 
 }
 .input-wrap .send{

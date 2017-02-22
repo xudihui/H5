@@ -9,7 +9,9 @@ Page({
         tipText: '加载更多',
         CardMoney: '',
         Trades:'',
-        pageno:1
+        pageno:1,
+        CardNumber:''
+
     },
  onLoad: function (options) {   
     var that = this; 
@@ -56,7 +58,7 @@ Page({
         header: {
          'content-type': 'application/json',
          'appId': 'com.smk.h5.tg',
-         'channelId':'qd003',
+         'channelId':'qd010',
          'activitycode':'wb_qb'
         },      
         success: function (res) {  
@@ -64,9 +66,23 @@ Page({
          that.setData({      
           Trades: res.data.Trades,
           CardMoney:res.data.CardMoney/100,
-          pageno:++that.data.pageno
+          CardNumber:options.CardNumber,
+          type:type
          });    
-        }   
+        },
+        fail: function (res) {  
+         wx.hideToast();   
+         wx.showModal({
+            content: '暂时无法获取钱包信息！',
+            confirmText:'知道了',
+            showCancel:false,
+            success: function(res) {
+                if (res.confirm) {
+                console.log('用户点击确定')
+                }
+            }
+            })   
+        }
    });  
   },      
     showTip: function(e) {
@@ -88,7 +104,7 @@ Page({
         var timer = null;
         timer = setTimeout(function() {
             that.setData({
-                tipText: '没有更多了'
+                tipText: '查看更多'
             });
             timeoutFlag.timer = {
                 isTimeout: true
@@ -126,40 +142,50 @@ Page({
     },
     _getMoreProductList: function(timer) {
         var that = this;
-        wx.request({
-            url: 'https://weixin.96225.com/weixin/financial/fronthtml',
-            method: 'GET',
-            data: {
-                limit: 10,
-                offset: this.data.offset + 10,
-                shelf__id: this.data.shelfId,
-                img_size: 'small'
-            },
-            success: function(data) {
-                console.log(data)
-                if (!timeoutFlag.timer.isTimeout) {
-                    if (data.data.objects.length > 1) {
-                        var objects = that.data.productList.concat(data.data.objects);
-                        that.setData({
-                            productList: objects,
-                            offset: that.data.offset + 10,
-                            tipText: '查看更多'
-                        });
-                    } else {
-                        that.setData({
-                            tipText: '没有更多啦'
-                        });
-                    }
-                }
-                clearTimeout(timer);
-                wx.hideToast();
-            },
-            fail: function() {
+    wx.request({    
+        url: CONFIG.purse,    
+        method: 'GET',    
+        data: {
+         "request":AES('{\"ReqSeq\":\"'+0+'\",\"smid\":\"'+''+'\",\"CardType\":\"'+that.data.type+'\",\"CardNumber\":\"'+that.data.CardNumber+'\",\"UserNo\":\"'+''+'\",\"Currpage\":\"'+that.data.pageno+'\",\"PageSize\":\"'+'20'+'\",\"FunCode\":\"'+'6003'+'\"}')},
+        header: {
+         'content-type': 'application/json',
+         'appId': 'com.smk.h5.tg',
+         'channelId':'qd010',
+         'activitycode':'wb_qb'
+        },      
+        success: function (res) {  
+         wx.hideToast();  
+         console.log(data)
+        if (!timeoutFlag.timer.isTimeout) {
+            if (res.data.Trades.length > 1) {
+                 that.setData({      
+                  Trades: that.data.Trades.concat(res.data.Trades),
+                  pageno: ++that.data.pageno,
+                  tipText: '查看更多'
+                 }); 
+            } else {
                 that.setData({
-                    tipText: '查看更多'
+                    tipText: '没有更多啦'
                 });
-                wx.hideToast();
             }
-        });
+        }
+        clearTimeout(timer);
+        wx.hideToast();          
+  
+        },
+        fail: function (res) {  
+         wx.hideToast();   
+         wx.showModal({
+            content: '暂时无法获取钱包信息！',
+            confirmText:'知道了',
+            showCancel:false,
+            success: function(res) {
+                if (res.confirm) {
+                console.log('用户点击确定')
+                }
+            }
+            })   
+        }
+   });         
     }
 })

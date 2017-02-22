@@ -3,13 +3,13 @@
 
 <modal  confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalOk" bindcancel="modalCancle">
   <view> 请输入{{_mobile}}的验证码 </view>
-  <view class='input-wrap flex'><input maxlength='6' focus="true" bindinput="updateCode" placeholder='请输入验证码' value="{{code}}" type="idcard"></input><text class='send'>{{time}}</text></view>
+  <view class='input-wrap flex'><input maxlength='6' focus="true" bindinput="updateCode" placeholder='请输入验证码' value="{{code}}" type="idcard"></input><text class='send' bindtap='sendCode'>{{time}}</text></view>
   <view class='small'> 验证完的手机号可在市民卡app登录使用</view>
 </modal>
 <form bindsubmit="formBindsubmit">
 <view class="border">
 	<view class="section flex first">
-	  <text>手机号:</text><input name='tel' value="15067425400" type="idcard" maxlength="11" placeholder="请输入手机号码" />
+	  <text>手机号:</text><input name='tel'  type="idcard" maxlength="11" placeholder="请输入手机号码" />
 	</view>
 	<view class="section flex">
 	  <text>卡<text class='font'></text>号:</text><input name='card' maxlength="16" placeholder="请输入卡号" />

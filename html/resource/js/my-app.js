@@ -419,7 +419,7 @@ var changeTitle = function(e) {
 
 		var $body = $$('body')
 		document.title = title;
-		var $iframe = $$('<iframe src="../resource/images/blank.gif"></iframe>');
+		var $iframe = $$('<iframe src="resource/images/blank.gif"></iframe>');
 		$iframe.on('load', function() {
 			setTimeout(function() {
 				$iframe.off('load').remove();

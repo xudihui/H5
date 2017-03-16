@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html style='font-size:16px' version='2.6.1' class='officialAccounts' > <!-- 版本号，会在ajax请求头中传递给后台 -->
+  	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <link rel="stylesheet" href="../resource/css/framework7.ios_min.css">
+    <link rel="stylesheet" href="../resource/css/my-app.css">
+    <link rel="stylesheet" href="../resource/css/my-card.css">
+    <link rel="stylesheet" href="../resource/css/iconfont.css">
+    <script type="text/javascript" src="../../conf/conf.js"></script>     
+    <script type="text/javascript" src="../resource/js/ajax.js"></script>
+    <script type="text/javascript" src="../resource/js/framework7.js"></script>
+		       		
+		<script>
+		//声明_czc对象:
+		var _czc = _czc || [];
+		//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+		_czc.push(["_setAccount", "1260784412"]);
+		</script>       		
+       		
+	</head>
+   <body baseUrl="/weixin/public/">
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+
+    <div class="views">
+      <div class="view view-main">
+
+        <div class="pages">
+          <div  class="page" data-page="smk-index" >
+            <div class="page-content" >
+
+
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="test.html" class="button button-big">测试页面</a></div>
+          </div>
+</div>    
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="getCard.html" class="button button-big">开卡</a></div>
+          </div>
+</div>  
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="activeCard.html" class="button button-big">激活</a></div>
+          </div>
+</div>  
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="rechargeAuto.html" class="button button-big">自动充值</a></div>
+          </div>
+</div>
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="cardDetail.html" class="button button-big">卡详情</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="busList.html" class="button button-big">乘车记录</a></div>
+          </div>
+</div>
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="recharge.html" class="button button-big">充值</a></div>
+          </div>
+</div>
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="rechargeList.html" class="button button-big">充值记录</a></div>
+          </div>
+</div>
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="rechargeDetail.html" class="button button-big">充值记录-详情</a></div>
+          </div>
+</div>
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="rechargeResult.html" class="button button-big">充值结果</a></div>
+          </div>
+</div>
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="myCards.html" class="button button-big">我的卡片</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="busLine.html" class="button button-big">开通线路</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="card.html" class="button button-big">卡片详情</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="realName.html" class="button button-big">实名认证</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="realNameResult.html" class="button button-big">实名认证成功</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="help.html" class="button button-big">使用帮助</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="cancelResult.html" class="button button-big">退卡结果</a></div>
+          </div>
+</div>
+
+<div class="wrap">
+          <div class="row">
+            <div class="col-100"><a href="#" class="button button-big">完成</a></div>
+          </div>
+</div>
+
+
+
+            </div>
+          </div>
+		    </div>
+
+      </div>
+    </div>
+<!-- template7 start --> 
+
+
+  <!-- 地图列表模板 start --> 
+  <script type="text/template7" id="mapList">
+          {{#each pois}}  
+          <div class='map_list after-line'>
+             <div class="map_list_l">
+              {{@index+1}}
+             </div>
+             <div class="map_list_c setover">
+              {{name}}
+             </div>  
+             <div class="map_list_c setover">
+              {{address}}
+             </div>  
+             <div class="map_list_r">
+              {{distance}}米
+             </div>  
+             <div class="map_list_r map_list_r_bottom">
+              编号{{js "Math.floor(Math.random()*1000)"}}
+             </div>            
+          </div>
+      {{/each}}
+    </script>   
+    <!-- 地图列表模板 end -->    
+
+  <!-- 补登记录 start --> 
+  <script type="text/template7" id="recordPage">
+  {{#if Result}}
+      {{#each data}}     
+       <div class="list-block record" promoParams='{{promoParams}}' wallet_sn='{{wallet_sn}}'  OrderCode='{{order_code}}' PayOrderNo = '{{pay_sn}}' CardNo='{{card_no}}' Money='{{order_fee}}' Type='{{type}}'>
+        <ul class='{{#js_compare "this.business_tag_code==901"}}red_packet{{else}}{{/js_compare}}'>
+          <li style="padding-top:10px;">
+            <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">交易时间:<span class='gray'>
+                           {{js "this.time_start.slice(0,4)"}}-{{js "this.time_start.slice(4,6)"}}-{{js "this.time_start.slice(6,8)"}} {{js "this.time_start.slice(8,10)"}}:{{js "this.time_start.slice(10,12)"}}:{{js "this.time_start.slice(12,14)"}}
+                      </span></div>
+
+                      <div class="item-title">  
+                       <p class='order_wrap_blue'>
+                          {{#js_compare "this.order_state==0"}}<span class='red'>未支付</span>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==111"}}<span class='orange'>待补登</span>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==9"}}<span class='gray'>订单已关闭</span>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==202"}}<span class='gray'>已关闭</span>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==410"}}{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==100"}}订单处理中{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==511"}}<span class='gray'>已关闭</span>{{else}}{{/js_compare}} 
+                       </p>
+                      </div>                      
+                    </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">卡<i class="font"></i><i class="font"></i>号:<span class='gray'>{{card_no}}</span></div>
+                    </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">充值区域:<span class='gray'>{{js "this.type==2 || this.type==3 ?parseInt(this.time_start.slice(4,6))+'月':''"}}{{js "this.type==4 ? parseInt(this.time_start.slice(4,6) == '12' ? '0' :this.time_start.slice(4,6) )+1+'月' :''"}}{{type==1?'钱包':'月票'}}</span></div>
+                    </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">充值金额:<span class='gray'>{{order_fee/100}}元</span></div>
+                      <div class="item-title">  
+                       <p class='order_wrap'>
+                          {{#js_compare "this.order_state==0"}}<a href='#' class='pay'>去支付</a>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==111 && this.business_tag_code!=901"}}<a href='#' class='refund'>去退款</a>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==9"}}<span class='blue'>订单超时</span>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==202"}}支付失败{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==410"}}<span class='blue'>退款中</span>{{else}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==100"}}{{/js_compare}} 
+                          {{#js_compare "this.order_state==511"}}退款成功{{else}}{{/js_compare}} 
+                       </p>
+                      </div>                        
+                    </div>
+            </div>
+          </li>  
+          <li style="padding-bottom: 10px;">
+            <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">订单流水:<span class='gray'>{{order_code}}</span></div>
+
+                    </div>
+            </div>
+          </li>                               
+        </ul>
+      </div>
+      {{/each}}
+           
+      {{else}}         
+           <div class="list-block media-list"><ul class='none_wrap'><li style='padding:10px'  class='none'>暂无交易记录</li></ul></div>
+          {{/if}}  
+    </script>
+    <!-- 补登记录 end --> 
+
+     <script type="text/template7" id="List">
+      <form action="{{aliWapUrl}}/orderPay.do?__webview_options__=closeAfterPayFinish%3dfalse" method="post" style='width:0px;height:0px;overflow:hidden'> 
+        <input type="text" name="version" value="{{version}}" />
+        <input type="text" name="transCode" value="{{transCode}}" />
+        <input type="text" name="reqSeq" value="{{reqSeq}}" />
+        <input type="text" name="merCode" value="{{merCode}}" />
+        <input type="text" name="chainNo" value="{{chainNo}}" />
+        <input type="text" name="orderNo" value="{{orderNo}}" />
+        <input type="text" name="dateTime" value="{{dateTime}}" />
+        <input type="text" name="amount" value="{{amount}}" />
+        <input type="text" name="goods" value="{{goods}}" />
+        <input type="text" name="notifyUrl" value="{{notifyUrl}}" />
+        <input type="text" name="returnUrl" value="{{returnUrl}}" />
+        <input type="text" name="sign" value="{{sign}}" />
+        <input type="text" name="promoParams" value="{{promoParams}}" />
+        <input type="submit" value="立即支付" id='doPay'>
+      </form>
+    </script>    
+<!-- template7 end -->
+ 	 <script type="text/javascript" src="../resource/js/my-app.js"></script>
+    </body>
+</html>

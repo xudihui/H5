@@ -8,280 +8,78 @@
     <meta name="format-detection" content="telephone=no"/>
     <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
 
-    <title>全民夺宝，iphone7 plus 免费带回家！</title>
-    <meta name="keywords" content="杭州市民卡，市民卡" />
-    <meta name="description" content="抗霾送福气，新年土豪手机任性送！" />
-    <!-- 浏览器适配 -->
-    <script type="text/javascript">
-        "use strict";
-        (function (e) {
-            var i = 1, n = window.navigator.userAgent;
-            var t = n.match(/iphone/i);
-            var d = n.match(/yixin/i);
-            var o = n.match(/Mb2345/i);
-            var w = n.match(/mso_app/i);
-            var a = n.match(/sogoumobilebrowser/gi);
-            var r = n.match(/liebaofast/i);
-            var s = n.match(/GNBR/i);
-            function h() {
-                var e = screen.width > 0 ? window.innerWidth >= screen.width || window.innerWidth == 0 ? screen.width : window.innerWidth : window.innerWidth, i, n;
-                if (window.devicePixelRatio) {
-                    i = window.devicePixelRatio
-                } else {
-                    i = t ? e > 818 ? 3 : e > 480 ? 2 : 1 : 1
-                }
-                if (t)e = screen.width;
-                n = e > 1080 ? 144 : e / 7.5;
-                n = n > 32 ? n : 32;
-                window.screenWidth_ = e;
-                window.htmlFontSize_ = n;
-                if (d || o || w || a || r || s) {
-                    setTimeout(function () {
-                        e = screen.width > 0 ? window.innerWidth >= screen.width || window.innerWidth == 0 ? screen.width : window.innerWidth : window.innerWidth;
-                        n = e > 1080 ? 144 : e / 7.5;
-                        n = n > 32 ? n : 32;
-                        document.getElementsByTagName("html")[0].dataset.dpr = i;
-                        document.getElementsByTagName("html")[0].style.fontSize = n + "px";
-                    }, 500)
-                } else {
-                    document.getElementsByTagName("html")[0].style.fontSize = n + "px";
-                }
-                // 如果在PC上打开
-                if( !/Android|webOS|iPhone|iPad|iPod|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                    document.getElementsByTagName("html")[0].style.fontSize = "60px";
-                }
-            }
-            h()
-        })(window.NEWAP = window.NEWAP || {});
-    </script>
-    <link rel="stylesheet" href="../css/index.css" media="all"/>
+    <title>微信分享模块</title>
     
 
 </head>
 
 <body class="bgcolor">
-    <div class="g-wrap">
-       <img src="../img/share_big.jpg" style="width:0;height: 0;position: absolute;left: 0;top:0;z-index: 1;" id="sharePic">
-       <!-- app提示 -->
-            <!-- <p class="app_det"><s class="sbg"></s><span>*若使用市民卡APP分享的用户请升级至3.4.1及以上版本</span></p> -->
-        <!-- 内容层 -->
-        <div class="content">
-            <h1 class="h1">全民夺宝，新年疯抢iphone7 plus！</h1>
-          
-            <div class="main">
-                <!-- 倒计时 -->
-                <div class="endTime J_timeCount">揭晓倒计时: 
-                    <span class="redbg J_day">12</span>天
-                    <span class="redbg J_hour">23</span>时
-                    <span class="redbg J_min">12</span>分
-                    <span class="redbg J_sec">56</span>秒
-                </div>
-                <!-- 邀请页 -->
-                <div class="mainDao mainDao_int">
-                    <section>
-                        <p class="big">iPhone7 plus 32GB </p>
-                        <p>活动结束后抽取1人获得该奖品。 </p>
-                        <p class="big">兑奖券获取条件：</p> 
-                        <p>1.首次注册/登录送</p>
-                        <p>2.邀请送</p>
-                        <p>(每邀1人送一次，上不封顶！)</p>
-                        <a class="btn btn-duobao" id='j_entrance'>立即夺宝</a>
-                    </section>
-                    <p id='j_invite' ></p> 
-
-                </div>
-                <!-- 被邀请页-->
-                <div class="mainDao mainDao_inted">
-                    <!-- 领取 -->
-                    <div class="firstSec">
-                        <p class="int">我是<span id='j_mobile'></span>，我给你送了一张兑奖券，<br/> 注册成功即可获得，一起赢取iphone7 plus吧！</p>
-                        <div class="inputbg"><input type="text" class="" placeholder="输入手机号，赢取iphone7 plus！" id="input-phone" maxlength="11"/></div>
-                        <div class="inputbg clearfix yanzheng">
-                            <input type="text" name="" placeholder="输入验证码" class="" id="yznum" maxlength="6" />
-                            <!-- 不可点击添加 disabled-->
-                            <div class="posright">
-                                <a href="javascript:;" class="send-messsge">获取验证码</a>
-                                <div class="countTime">重新发送(<span id="count">120</span>s)</div>
-                            </div>
-                        </div>
-                        <a class="btn btn-duobao" id='j_get'>立即夺宝</a>
-                    </div>
-                </div>
-               
-            </div>
-
-            <!-- 活动结束 出display:block-->
-            <section class="act_end">
-                <!-- 抽奖中 出display:block -->
-                <div class="board cing"></div>
-                <!-- 有中奖结果 出display:block-->
-                <div class="board ced">
-                    <p class="user">130XXXX8989</p>
-                    <p class="n">765677967</p>
-                </div>
-                <div class="box"></div>
-            </section>
-
-            <!-- 陆地 受邀请页加land2-->
-            <section class="land">
-                <a class="btn-myinvent" href="javascript:;">我的兑奖券</a>
-                <a class="btn-rule" href="javascript:;">活动锦囊</a>
-                <!-- 获奖列表 -->
-                <div class="hero-list">
-                    <div class="sec-scroll">
-                    </div>
-
-                </div>
-            </section>
-
-            <div class="footer">
-                <div class="footer-det"><s class="icon-smk"></s>杭州市民卡有限公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客服热线：96225</div>
-            </div>
-
-        </div>
-        <!-- 内容层 end -->
-
-        
-            <!-- 遮罩层 -->
-            <div class="mask"></div>
-            <!-- 引导分享 -->
-            <div class="m-pop " id="pop-share"></div>
-            <!-- 弹窗：活动规则 -->
-            <div class="m-pop pop-rule" id="">
-                <div class="pop_wrap">
-                    <div class="pop_header">活动锦囊</div>
-                    <div class="pop_body">
-                        <section class="rule-content">
-                        <p class="t">一、活动时间：</p>
-                        <p>2017年2月10日0:00至2017年2月28日23:59</p>
-                        <p class="t">二、活动范围：</p>
-                        <p>杭州市民卡用户</p>
-                        <p class="t">三、活动说明：</p>
-                        <p>【注册/登录/邀请夺宝】活动期间，用户注册/首次登录后点击活动首页“立即夺宝”，各获得1张兑奖券；继续点击活动首页“立即夺宝”分享活动，每成功邀请1位好友注册，还能获得1张兑奖券；邀请越多，获得的兑奖券越多，上不封顶。活动结束后，委派杭州市民卡办公室工作人员利用抽奖软件随机抽取1张兑奖券，核实用户信息后，奖励1台iphone7 plus手机。</p>
-                        <p>【公交充值拿红包】新老用户去APP公交充值，还能抽取最高200元公交红包。</p>
-                        <p class="t">四、活动细则：</p>
-                        <p>1）兑奖券获取：仅限活动期间在杭州市民卡APP活动页面注册、或首次登录、或邀请好友成功注册的用户，其他类型用户不能获得兑奖券，用户在杭州市民卡APP以外活动页面分享无效；</p>
-
-                        <p>2）活动期间内，用户在杭州市民卡APP活动页面注册可获得1张兑奖券，首次登录可获得1张兑奖券，每分享并成功邀请1位好友注册，可获得1张兑奖券，邀请越多，获得的兑奖券越多，上不封顶；</p>
-
-                        <p>3）每个邀请链接可被多名新用户注册，上不封顶；</p> 
-
-                        <p>4）奖品为iPhone7 plus 32GB手机1台，活动结束后首个工作日，委派杭州市民卡办公室工作人员利用抽奖软件随机抽取1张兑奖券，奖励1台手机；</p>
-
-                        <p>5）若经查证发现恶意注册、刷号、机器注册等行为，兑奖券视无效；</p>
-
-                        <p>6）新老用户去APP公交充值，还能抽取公交红包，详情见该活动页面活动规则；</p>
-
-                        <p>7）除被邀请页面首次注册外，用户需登录杭州市民卡才能继续夺宝；</p>
-
-                        <p>8）此活动最终解释权归杭州市民卡所有。</p>
-                          
-                        </section>       
-                    </div>
-                    <div class="pop_close J_popClose"><s class="icon-close"></s></div>
-                </div>
-            </div>
-
-
-            <!-- 弹窗：领取成功 -->
-            <div class="m-pop pop-getM j_reg" >
-                <div class="pop_body">
-                    <p class="p1">恭喜获得兑奖券</p>
-                    <div class="juanbg"></div>
-                    <p class="p2">中奖结果将在活动结束后首个工作日公布于此活动首页 首次登录APP活动页还能再领奖券哦，每邀1人送一张， 上不封顶！ </p>
-                   
-                    <a href="javascript:;" class="btn-white" id='j_getMore'>我要更多兑奖券</a>
-                    <a href="http://activity.96225.com/smk_activity/html/getBdRed/welcome.html?activitycode=bd_red&channelId=bd009" class="btn-orange J_tobudeng">公交充值拿红包</a>
-                    <a href="javascript:;" class="btn-sure J_popClose"></a>
-                </div>
-            </div>
-            <!-- 老用户领取 -->
-            <div class="m-pop pop-getM j_login" >
-                <div class="pop_body">
-                    <div class="pic_icon"></div>
-                    <p class="p3">啊哦，您已注册，<br/> 请移驾杭州市民卡APP参加活动哦！ </p>
-                    <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.smk" class="btn-white">我要更多兑奖券</a>
-                    <a href="http://activity.96225.com/smk_activity/html/getBdRed/welcome.html?activitycode=bd_red&channelId=bd009" class="btn-orange">公交充值拿红包</a>
-                    <a href="javascript:;" class="btn-sure J_popClose"></a>
-                </div>
-            </div>
-
-            <!-- 我的奖品 -->
-            <div class="m-pop awardResult">
-                <div class="pop_wrap">
-                    <div class="pop_header">我的兑奖券</div>
-                    <div class="pop_body">
-                        <ul class="cc">
-                        </ul>
-                    </div>
-					<div class="pop_close J_popClose"><s class="icon-close"></s></div>
-                </div>
-            </div>
-            
-
-            <!-- 提示 -->
-            <div class="m-pop pop-Tip" id="pop-Tip">
-                <div class="pop_wrap">
-                    <div class="pop_body">请稍后再试</div>
-                    <div class="pop_close  J_popClose"><s class="icon-close"></s></div>
-                </div>
-            </div>
-
-            <!-- 分享成功 -->
-            <div class="m-pop pop-shareBack" id="pop-shareBack">
-                <div class="pop_wrap">
-                    <div class="pop_header">分享成功</div>
-                    <div class="pop_body">你已分享成功，你的小伙伴注册成功后，你俩将各获得一个兑奖券，邀请越多，兑奖券越多！</div>
-                    <div class="pop_close  J_popClose"><s class="icon-close"></s></div>
-                </div>
-            </div>
-
-            
-
-    </div>            
-
-<div class="showbjbox"></div>
-<div class="openboxs-mask zoomInDown"><span class="tip-dialog"><div class="loading"><div class="dot white"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>页面加载中,请稍后</span></div>
-    <script type="text/javascript" src="../js/conf.js"></script>
-    <!-- 
-    <script type="text/javascript" src="../js/conf.js"></script>
-    <script type="text/javascript" src="../js/lib/zepto.min.js"></script>
-    <script type="text/javascript" src="../js/lib/template7.min.js"></script>    
-    <script type="text/javascript" src="../js/lib/AES.js"></script>
-    <script type="text/javascript" src="../js/main.js"></script>	
     <script type="text/javascript" src="../js/lib/jweixin-1.0.0.js"></script>
-    -->
-    <script type="text/javascript" src="../js/index.min.js"></script>
-     <!--英雄榜-->
-    <script type="text/template7" id="allMyAwards">
-      <ul id="herolist">
-      {{#if code}}
-      <li><p class="m">暂无</p></li>       
-      {{else}}
-      {{#each response}}   
-        <li><p class="phone">{{js "this.inviter.setStars()"}}</p><p class="m">获得{{this.amount}}张兑奖券</p></li>
-      {{/each}}          
-      {{/if}} 
-      </ul>   
-    </script>  
-
-     <!--兑奖券、邀请次数、券数-->
-    <script type="text/template7" id="ticket">
-      {{#if code}}
-      <li>暂无</li>       
-      {{else}}
-      您已成功邀请<span class="red">{{this.response.inviteNum}}</span>人，获得<span class="red">{{this.response.awardNum}}</span>张兑奖券！@@@
-      {{#each response.awardList}}   
-         <li>{{this.awardNo}}</li>
-      {{/each}}          
-      {{/if}}  
-    </script>  
-
-    <!-- 站长统计 -->
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261182052'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261182052' type='text/javascript'%3E%3C/script%3E"));document.getElementById('cnzz_stat_icon_1261182052').style.display="none";</script>
-    
-
     <script type="text/javascript" src="http://weixin.96225.com/weixin/wechat/getShare"></script>
+    <script type='text/javascript'>
+        var link = window.location.href.split('html/i.html')[0],
+            img = document.getElementById("sharePic").src,
+            shareUrl = window.location.href;
+        wx.config(wx_conf);
+        
+        //主要解决分享中小图片不能显示的问题。
+        var shareDataForMessage = {
+                imgUrl: "http://activity.96225.com/exthtml/y/img/share.jpg",
+                link:shareUrl,
+                title: '【杭州市民卡】年末大狂欢',// 分享标题
+                desc: '只需一步，ipad、100元市民卡、50元市民卡、流量任你抢',
+                success: function () {
+                    //执行添加机会
+                      getChance();
+                },
+                cancel: function () {
+                }   
+            };
+        var shareDataForTimeLine = {
+                imgUrl: "http://activity.96225.com/exthtml/y/img/share.jpg",
+                link:shareUrl,
+                title: '【杭州市民卡】年末大狂欢，Pad红包抢不停！',// 分享标题
+                desc: '只需一步，既拿红包又抢Pad！',
+                success: function () {
+                    //执行添加机会
+                      getChance();
+                },
+                cancel: function () {
+                }   
+            };          
+                            
+        if (typeof wx != 'undefined') {
+           wx.ready(function(){
+                // 分享到朋友圈
+                wx.onMenuShareTimeline(
+                    shareDataForTimeLine
+                );
+                // 分享给朋友
+                wx.onMenuShareAppMessage(
+                    shareDataForMessage
+                );
+                // 分享到QQ
+                wx.onMenuShareQQ(
+                    shareDataForMessage
+                );
+                // 分享到QQ空间
+                wx.onMenuShareQZone(
+                    shareDataForMessage
+                );
+                wx.hideMenuItems({
+                    menuList: [
+                               'menuItem:exposeArticle', //举报
+                               'menuItem:setFont',
+                               'menuItem:refresh',
+                               'menuItem:originPage',
+                               'menuItem:readMode',
+                               'menuItem:share:email'
+                               ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+                });
+
+            }); 
+        }
+    </script>
 
     
 </body>

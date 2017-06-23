@@ -172,6 +172,51 @@ var getDataFromApp = function(data) {
     }     
     var o = JSON.parse(data);
 }
+//苹果5元一斤
+var apple = function(state,action){
+    switch (action.type) {
+        case 'apple':
+        return state.apple_ += action.number*5 //苹果五元一斤
+        default:
+            return state;
+    }
+}
+    
+//西瓜二元一斤
+var watermelon = function(state,action){
+    switch (action.type) {
+        case 'watermelon':
+        return state.watermelon_ += action.number*8 //西瓜二元一斤
+        default:
+            return state;
+    }
+    
+}
+
+//合并计算器
+var combine = function(reducer){
+     return function(state,item){
+        return Object.keys(reducer).reduce(function(nextState,key){
+            reducer[key](state,item);
+            return state;
+        },{})
+     }
+}
+
+var items = [{number: 1,type:'apple'}, {number: 2,type:'watermelon'}];
+var reducer = {apple:apple,watermelon:watermelon};
+
+//对item执行的reduce
+var reduce_ = function(state,item){
+    return ['apple','watermelon'].reduce(
+       function(nextState,key){
+        console.log(key);
+        console.log(nextState);//此处有一个非常重要的点，就是在nextState从来没被使用过，每次都用key索引
+        reducer[key](state,item);
+        return state;
+      },{})
+}
+
 
 </script>
   

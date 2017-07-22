@@ -1,0 +1,70 @@
+刚刚结束的广告位功能，在chrom和安卓手机上都能正常访问，但是在ios手机端，微信和支付宝中打开都无法访问。由于支付宝没有对外的开发工具，只能用微信开发工具进行调试，但是在里面也能正常展示，无法重现错误。看来应该是真机App中webView容器问题，于是通过逐行alert方式，定位到在
+
+ var a = Dom7('<a href="#" class="frame_detail"  url="'+setting_.pictureUrl+'"></a>'),
+ a.attr({
+  'style':'line-height:0;'
+ });   
+
+处停止执行了，通过try catch 输出e.message错误信息为：attempted to assign to readonly property, 大致意思为“尝试分配定义只读属性”，第一行的Dom7是前端的一个选择器框架，attr的源码如下：
+attr: function (attrs, value) {
+    if (arguments.length === 1 && typeof attrs === 'string') {
+        // Get attr
+        if (this[0]) return this[0].getAttribute(attrs);
+        else return undefined;
+    }
+    else {
+        // Set attrs
+        for (var i = 0; i < this.length; i++) {
+            if (arguments.length === 2) {
+                // String
+                this[i].setAttribute(attrs, value);
+            }
+            else {
+                // Object
+                for (var attrName in attrs) {
+                    this[i][attrName] = attrs[attrName];
+                    this[i].setAttribute(attrName, attrs[attrName]);
+                }
+            }
+        }
+        return this;
+    }
+}
+
+通过逐行删除，发现删除到this[i][attrName] = attrs[attrName];时，网页报错消失。重新查看代码，正确设置样式的api应该是下一行的setAttribute，这里为什么直接给DOM元素设置style属性呢？带着这个疑问继续梳理。结合此次attr调用场景，dom元素本身也是对象，理论上设置属性不应该报错，而且我前面对img元素也设置过属性(未设置style)，它并没有报错：
+var img = Dom7('<img />');
+    img.attr({ //强制图片按照比例变形
+    'src':setting_.rFdsUrl + setting_.picture,
+    'width':width,
+    'height':height
+    });
+
+当把代码增加设置style之后，也能重现报错：
+var img = Dom7('<img />');
+    img.attr({ //强制图片按照比例变形
+    'src':setting_.rFdsUrl + setting_.picture,
+    'width':width,
+    'height':height,
+    'style':'line-height:0;'
+    });
+var img = Dom7('<img />');
+img.attr({ //强制图片按照比例变形
+'src':setting_.rFdsUrl + setting_.picture,
+'width':width,
+'height':height,
+'style':'line-height:0;'
+});
+
+这就说明对新创建的元素设置style会出现报错，其它属性正常，接下去我又用Dom7选择一个已经存在的元素，进行style设置，它也会同样的错误：
+Dom7('.rechage_type').attr({ //Dom具有创建和选择两重功能，当参数是不包含箭头的字符串时，作为选择器；当参数包含闭合箭头时为创建元素
+ 'style':'background:#ff3300'
+});   
+
+经过上面验证的一些场景，又尝试用ul、p、h1等标签进行实验，结果也一致，说明这个报错应该跟标签没有直接关系，暂时把这个现象归类为：使用Dom7创建或者选择元素都不能进行style属性设置，否则在ios手机中直接报错。
+
+https://trackjs.com/blog/tracked-attempted-assign-readonly-property-ios-8-typeerror/  文中指出，这个报错是一个 ios中webkit内核的bug（我又用safari浏览器查看了之前的场景，也同样报错），而且每个框架都以独特的方式遇到这个问题，我这里遇到肯定和Dom7选择器封装，以及attr封装的特殊结构有关系，因为我单独给DOM元素，使用同样方法设置style属性，并不会报错。webkit 也确认了该问题，https://bugs.webkit.org/show_bug.cgi?id=49739。在stackoverflow里也看到其它框架也有类似问题,Angular 1.2.25等。后来发现直接删除js开头的'use strict';就不会报错了，但是这样js语法就不是严格模式了。从Dom7源码结构发现这里的this[i][attrName] = attrs[attrName];只是为了给DOM元素存储数据的能力，暂时删除了它,把逻辑数据存储在localStorage中进行更新取。
+
+记录下来，期待下次中奖！
+
+
+最后发现问题代码 attempted to assign to read only property

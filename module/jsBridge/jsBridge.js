@@ -166,7 +166,7 @@
         des = opt.content || "",
         img = opt.imageUrl || "",
         lk = opt.shareUrl || "";
-        protocol(Protocols.setshareinfo.replace("{shareTitle}", ti).replace("{descContent}", des).replace("{imgUrl}", img).replace("{lineLink}", lk))
+        protocol(Protocols.setshareinfo.replace("{shareTitle}", encodeURI(ti)).replace("{descContent}", encodeURI(des)).replace("{imgUrl}", img).replace("{lineLink}", lk))
        // protocol(encodeURI(Protocols.setshareinfo.replace("{shareTitle}", ti).replace("{descContent}", des).replace("{imgUrl}", img).replace("{lineLink}", lk)))
 
     }

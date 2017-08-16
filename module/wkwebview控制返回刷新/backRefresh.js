@@ -6,7 +6,7 @@
     })
     //页面从缓存回到当前视图；页面第一次进入
     window.addEventListener('pageshow', function( e ){
-        if(isPageHide) { 
+        if(window.isPageHide) { 
             window.location.reload(); 
         }    
     })

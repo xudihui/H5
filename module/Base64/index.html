@@ -145,7 +145,7 @@ document.querySelector('#do1').onclick = function(){
   
 var base = new Base64();
 var str = document.querySelector('#in1').value;  
-var result2 = base.encode(str);  
+var result2 = base.encode(encodeURI(str));  
 alert('加密结果:'+result2);
 
 }

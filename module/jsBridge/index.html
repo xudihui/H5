@@ -42,10 +42,12 @@ jsBridge.setTitle(title);
           <td>分享</td>
           <td><pre>
 jsBridge.setShareInfo({
-   title:'分享标题',
-   content:'分享正文',
-   imageUrl:'图片地址',
-   shareUrl:'链接地址'
+   title:'分享标题(String)',
+   content:'分享正文(String)',
+   imageUrl:'图片地址(String)',
+   shareUrl:'链接地址(String)',
+   success:'分享成功(Function [appVersion])',
+   error:'分享取消或者失败(Function [appVersion])'
  })</pre></td>    
         </tr> 
         <tr>
@@ -124,7 +126,9 @@ jsBridge.gotoNative(pageName);
        title:'分享标题%%%',
        content:'分享正文%%%',
        imageUrl:'图片地址',
-       shareUrl:'https://www.96225.com'
+       shareUrl:'https://www.96225.com',
+       success:function(v){alert('成功'+v)},
+       error:function(v){alert('失败'+v)}
      })
   }
   btns[2].onclick = function(){
@@ -146,24 +150,6 @@ var appendP = function(father,child){
   },10000)
 }
 
-
-//分享回调 
-var getMessageFromApp = function(dataStr){
-    // 这里app传过来的必须是字符串，转换成json {"shareStatus":"1"}
-    try{
-       var data = JSON.parse(dataStr);
-        // 分享成功
-        if(data['shareStatus'] == 1){
-          alert('success')
-        }
-        else{
-          alert('fail')
-        }       
-    }
-    catch(e){
-        alert(e.message.indexOf('Unexpected ') > -1 ? '分享出错' : null)
-    }
-}  
 
 //从app获取用户信息
 var getDataFromApp = function(data) {

@@ -172,13 +172,18 @@
        // protocol(encodeURI(Protocols.setshareinfo.replace("{shareTitle}", ti).replace("{descContent}", des).replace("{imgUrl}", img).replace("{lineLink}", lk)))
        
        window.getMessageFromApp = function(data){
-	        var data = JSON.parse(data);
-			if(data.shareStatus == 1){
-                success.call({},data.appVersion);
-			}
-			else{
-				error.call({},data.appVersion);
-			}
+		    try{
+		        var data = JSON.parse(data);
+				if(data.shareStatus == 1){
+	                success.call({},data.appVersion);
+				}
+				else{
+					error.call({},data.appVersion);
+				}    
+		    }
+		    catch(e){
+		        alert(e.message.indexOf('Unexpected ') > -1 ? '分享出错' : null)
+		    }
        }
     }
 

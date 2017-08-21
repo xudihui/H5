@@ -165,10 +165,21 @@
       var ti = opt.title || "",
         des = opt.content || "",
         img = opt.imageUrl || "",
-        lk = opt.shareUrl || "";
+        lk = opt.shareUrl || "",
+        success = opt.success || function(){},
+        error = opt.error || function(){};
         protocol(Protocols.setshareinfo.replace("{shareTitle}", encodeURI(ti)).replace("{descContent}", encodeURI(des)).replace("{imgUrl}", img).replace("{lineLink}", lk))
        // protocol(encodeURI(Protocols.setshareinfo.replace("{shareTitle}", ti).replace("{descContent}", des).replace("{imgUrl}", img).replace("{lineLink}", lk)))
-
+       
+       window.getMessageFromApp = function(data){
+	        var data = JSON.parse(data);
+			if(data.shareStatus == 1){
+                success.call({},data.appVersion);
+			}
+			else{
+				error.call({},data.appVersion);
+			}
+       }
     }
 
     function share(callback) {

@@ -11,9 +11,12 @@
   </head>
   <body>
     <section class="page-header">
-      <h2 class="project-name" id='outPut'>base64解码</h2>
+      <h2 class="project-name" id='outPut'>base64解密</h2>
       <input type="text" id='in' value='eyJyZXN1bHQiOiIwMSJ9' style='color:#666;padding: 10px 20px;border-radius: 5px;border: none;'>
-	    <a class="btn" id='do'>解码</a>
+	    <a class="btn" id='do'>解密</a>
+      <h2 class="project-name" id='outPut1'>base64加密</h2>
+      <input type="text" id='in1' style='color:#666;padding: 10px 20px;border-radius: 5px;border: none;'>
+        <a class="btn" id='do1'>加密</a>
       <p></p>
     </section>
 
@@ -137,7 +140,15 @@ var result2 = base.decode(str);
 alert('解码结果:'+result2);
 
 }
+//var str = 'eyJyZXN1bHQioilwMSJ9'.toUpperCase();  
+document.querySelector('#do1').onclick = function(){
+  
+var base = new Base64();
+var str = document.querySelector('#in1').value;  
+var result2 = base.encode(str);  
+alert('加密结果:'+result2);
 
+}
 
 
 </script>

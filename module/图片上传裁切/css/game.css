@@ -1,0 +1,10 @@
+body{background:#fffafb;font-size:14px;min-height:auto}
+h4,h5{font-weight:normal;letter-spacing:0.1em}
+h4{border-top:7px solid #ef4c5b;color:#fff;padding-left:25px;margin-top:15px}
+h4 span{display:inline-block;white-space:nowrap;text-overflow: ellipsis;overflow: hidden;width:75px;line-height:21px;height:30px;text-align:center;background: url(../images/game/bg.png) 0 0 no-repeat;background-size: 75px 30px;}
+section{margin:0 25px;padding:25px 0;border-bottom:1px solid #e8e7e8;position:relative;height:131px;overflow:hidden;box-sizing:border-box}
+section img{width:66px;position:absolute;left:0;top:25px;bottom:25px;height:66px;border:3px solid #fff;border-radius:3px;box-shadow: 0px 0px 8px #bbb;}
+section h5{padding:0 50px 0 100px;white-space:nowrap;text-overflow: ellipsis;overflow: hidden;color:#000;font-size:16px;margin-top:-5px;  }
+section p{padding:15px 50px 0 100px;max-height:78px;overflow:hidden;box-sizing:border-box}
+section a{border:1px solid #dddcdc;border-radius:3px;color:#777;position:Absolute;top:21px;right:0;height:22px;line-height:22px;background:#eee;width:47px;text-align:center}
+section a:before{content:'进入'}

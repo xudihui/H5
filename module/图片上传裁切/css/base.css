@@ -1,0 +1,76 @@
+@charset "utf-8";html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video,i {border: 0 none;margin: 0;outline: 0 none;padding: 0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body {color: #000;font: 16px/1.5 "Microsoft Yahei","helvetica","arial";min-width: 320px;overflow-x:hidden}
+html,body{ min-height:99%;letter-spacing:0.05em}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;}
+form {display: inline;}
+ul, ol {list-style: outside none none;}
+a {color: #000;text-decoration: none;}
+a:hover {color: #1c5aa2;text-decoration: none;}
+img {border: 0 none;vertical-align: middle;}
+button, input, select, textarea {font-family: "Microsoft Yahei","helvetica","arial";font-size: 100%;outline: medium none;vertical-align: middle;}
+textarea {resize: none;}
+button, input[type="button"], input[type="reset"], input[type="submit"] {-moz-appearance: button;cursor: pointer;}
+button::-moz-focus-inner, input::-moz-focus-inner {border: 0 none;padding: 0;}
+table {border-collapse: collapse;border-spacing: 0;}
+.fl {float: left;}
+.fr {float: right;}
+.hide {display: none;}
+.show {display: block;}
+.ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.break {word-break: break-all;word-wrap: break-word;}
+header, footer, article, section, nav, menu, hgroup {display: block;}
+.clear{zoom:1;}
+.clear:after{content:""; display:block;clear:both;}
+.ml{ margin-left:10px;}
+.mt{ margin-top:10px;}
+.mb{ margin-bottom:10px;}
+.mr{ margin-right:10px;}
+.m10{ margin:10px;}
+.p10{padding:10px;}
+.pl{ padding-left:10px;}
+.pt{ padding-top:10px;}
+.pb{ padding-bottom:10px;}
+.pr{ padding-right:10px;}
+.pb40{ padding-bottom:50px;}
+.hide{ display:none;}
+.gray{ color:#999;}
+.bgbody{ background:#f2f2f2;}
+.bgwhite{ background:#fff;}
+.bordercolor{ border-color:#cc6666;}
+.bgred1{ background:#cc3333;}
+.bgred{ background:#cc6666;}
+.colorred{color:#cc6666;}
+.colorGrey{ color:#666;}
+/* CSS Document */
+.footers{ position:fixed!important; bottom:0!important;left:0;right:0; height:50px; background:#fff;-webkit-box-shadow: 0px -1px 5px #ccc; border-top:1px solid #ccc;}
+.footers ul li{ float:left; width:33%; text-align:center;position:relative}
+.footers ul li a{ display:block; font-size:14px; padding-top:5px; height:45px;}
+.footers ul li .fxs{ background:url(../images/footer_icon1.png) no-repeat;}
+.footers ul li .home{ background:url(../images/footer_icon22.png) no-repeat;}
+.footers ul li .dgdan{ background:url(../images/footer_icon3.png) no-repeat;}
+.footers ul li .renwu{ background:url(../images/footer_icon55.png) no-repeat;}
+.footers ul li i{ width:20px; height:20px; display:inline-block; background-size:20px!important; position:relative;}
+.footers ul li p{ margin-top:-5px;}
+.footers ul li.current a{color:#cc6666;}
+.footers ul li.current .fxs{ background:url(../images/footer_icon11.png) no-repeat;}
+.footers ul li.current .home{ background:url(../images/footer_icon2.png) no-repeat;}
+.footers ul li.current .dgdan{ background:url(../images/footer_icon33.png) no-repeat;}
+.footers ul li.current .renwu{ background:url(../images/footer_icon44.png) no-repeat;}
+input::-webkit-input-placeholder{ color:#ccc;}
+.footers4 ul li{ width:25%;}
+.footers ul li .num{ width:16px; height:16px; line-height:16px; text-align:center;color:#fff;font-size:12px; font-style:normal; border-radius:50%; position:absolute;right:-10px;top:-4px;}
+
+/* 新增首页move动画 2015.05.25*/
+@keyframes tuy_move
+{
+from {top:-66px;}
+to {top:-56px;}
+}
+
+@-webkit-keyframes tuy_move /*Safari and Chrome*/
+{
+from {top:-66px;}
+to {top:-56px;}
+}

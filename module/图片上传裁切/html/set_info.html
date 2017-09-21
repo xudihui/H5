@@ -1,0 +1,175 @@
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link media="all" href="../css/base.css" type="text/css" rel="stylesheet">
+<link media="all" href="../css/index.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/heloo.img.cut.css" />
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/datetime/zepto.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="" name="Keywords">
+<meta content="" name="Description">
+<!-- Mobile Devices Support @begin -->
+<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="format-detection" content="telephone=no, address=no">
+<meta content="yes" name="apple-mobile-web-app-capable"> <!-- apple devices fullscreen -->
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+<!-- Mobile Devices Support @end -->
+<link href="favourite.ico" rel="shortcut icon">
+</head>
+<body >
+	<header class='index'>
+	       <a class='address'>
+      	    <span class='title'>信息设置</span>
+           </a>
+		   <div class="logo"></div>
+    </header>
+    <div class='upload_wrap'>
+    	头像
+		<div class='upload'>+<div class="img_show" ></div><input id="head_img"  type="file" accept="image/*" /></div>
+    </div>
+    <div class='upload_wrap'>
+    	首页显示图片
+		<div class='upload upload_banner'>+<div class="img_show" ></div><input id="banner_img"  type="file" accept="image/*" /></div>
+    </div>
+	<div class="wrap_7" >
+	   <h1 class='name_noborder'>名称</h1>
+	   <input class='input02' type='text' />	
+	   <h1 class='name_noborder'>电话</h1>
+	   <input class='input02' type='text' />	
+	   <h1 class='name_noborder'>地址</h1>
+	   <textarea class='input02' ></textarea>
+	   <h1 class='name_noborder'>营业时间</h1>
+	   <input class='input02' type='text' />
+	   <h1 class='name_noborder'>时间控件</h1>
+		   <div data-role="fieldcontain" ><input type="date_heloo" id="date" class='input02' placeholder="请选择" /></div>
+	   <h1 class='name_noborder'>上传图片</h1>
+       <div id='file_upload' >
+	   </div>    
+	</div>	
+	<div class="wrap_7" >
+		<table class="grid07">
+			<tr>
+				<td><a href='javascript:void(0)' class='btn_red'>确认</a></td>
+			</tr>		
+		</table>
+	  
+	</div>
+<div class='content_wrap' style='display:none'>
+<div class="content">
+  <div class="component">
+    <div class="overlay">
+      <div class="overlay-inner"></div>
+    </div>
+    <img class="resize-image" src="" alt="image for resizing">
+    <button class="btn-crop js-crop">截图<img class="icon-crop" src="../images/crop.svg"></button>
+  </div>
+</div>
+</div>	
+	
+
+<script type="text/javascript" src="../js/heloo.img.cut.js"></script>
+
+<script type="text/javascript">
+   $(function(){
+   
+   
+
+	   
+	   $('#head_img,#banner_img').change(function(){
+	   var that = $(this);
+	   var file = this.files[0]; //选择上传的文件
+	   console.log(file)
+	   var r = new FileReader();
+	   r.readAsDataURL(file); //Base64
+	   $(r).load(function(){
+	    $('.content_wrap').height($('body').height())
+	    $('.content_wrap').fadeIn(200);
+	    $('.resize-image').attr('src',this.result)
+
+		
+		resizeableImage($('.resize-image'),that.attr('id') == 'head_img' ? $('#head_img') : $('#banner_img'));
+		/*
+		$('.resize-image').bind('load',function(){
+		        if($('.resize-image').width()>$(window).width()){
+			    	$('.resize-image').width($(window).width() -90);
+				}
+		})
+		*/
+
+		
+		if(that.attr('id') != 'head_img'){
+		   $('.overlay').css({width:320,height:130,marginLeft:-160})
+		}
+		else{
+		   $('.overlay').css({width:200,height:200,marginLeft:-100})
+		}
+	    //that.parent().find('.img_show').html('<img src="'+ $('.content_wrap').attr('src_') +'" alt="" />');
+	   });
+	   });
+	   $('#file_upload').delegate('a.img_del','click',function(){
+		   $(this).parents('.upload_wrap').remove();
+		   if($('#file_upload .upload_wrap').last().find('.img_show').html()==''){
+		      $('#file_upload .upload_wrap').last().remove()
+		   }
+		   addFileUp();
+	
+	   })
+   
+	   var addFileUp = function(){
+
+	   	   $('#file_upload').append($('<div class="upload_wrap" style=""><div class="upload">+<div class="img_show" ></div><input class="img_up" type="file" accept="image/*" /></div></div> '));
+		   imgEvent();
+	   
+	
+	   }
+   
+	   var imgEvent = function(){
+		   $('.img_up').change(function(){
+		   var that = $(this);
+		   var parent_ = that.parent().parent()
+		   var file = this.files[0]; //选择上传的文件
+		   var r = new FileReader();
+		   r.readAsDataURL(file); //Base64
+		   $(r).load(function(){
+		    that.parent().find('.img_show').html('<img src="'+ this.result +'" alt="" /><a class="img_del"></a>');
+			that.hide()
+		   });
+ 
+		   if(parent_.index()<5){
+			   addFileUp();
+		   }
+   
+		   });   	
+	
+	   }
+   
+	   if($('#file_upload .upload_wrap').length<4){
+		   addFileUp();
+	   }   
+	   $('.upload_wrap').eq(2).fadeIn(500);
+   
+      //输出图片路径
+      $('.btn_red').click(function(){
+   	   var result = [];
+   	   $('.upload:visible').each(function(){		 
+   		 var url = $(this).find('img').attr('src');		   
+   	   	 url ? result.push(url) : null
+   	   })
+   	   console.log(result)
+	   console.log($('.img_show').first().find('img').attr('src')+'《＝头像')
+	   console.log($('.img_show').eq(1).find('img').attr('src')+'《＝banner')
+      })
+	 
+   });
+</script>
+</body>
+</html>

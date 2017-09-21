@@ -1,0 +1,86 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* index Document by tuy 2014.11.13*/
+
+/*font-family: "微软雅黑";*/
+
+
+/*--------------------------main---------------------------*/
+*{padding:0;margin:0;font-family:'微软雅黑';letter-spacing:0.1em}
+
+.dropdown {
+height: 28px;
+line-height: 25px;
+}
+.dropdown {
+outline: 0;
+display: inline-block;
+width: 100%;
+float: left;
+height: 20px;
+}   
+.dropdown h4 {
+background-image: url(icon_blue.png);
+background-repeat: no-repeat;
+font: 12px Arial,Helvetica,sans-serif;
+color: #000;
+background-position: right -231px;
+height: 26px;
+line-height: 26px;
+padding-left: 2px;
+border: 1px solid #C0D8F0;
+overflow: hidden;
+padding-right: 32px;
+}
+
+.dropdown ul, .edit-select-box {
+border: 1px solid #c0d8f0;
+padding: 0 1px;
+background: #FFF;
+z-index: 9999;
+_zoom: 1;
+overflow-y: auto;
+overflow-x: hidden;
+_overflow-x: auto;
+}
+.dropdown ul, .edit-select-box {
+position: absolute;
+display: none;
+margin: 0;
+padding: 0;
+}
+
+.dropdown ul li, .edit-select-box li {
+height: 18px;
+font: 400 12px/18px Arial,Helvetica,sans-serif;
+text-align: left;
+white-space: nowrap;
+padding-right: 20px;
+}
+.dropdown ul li, .edit-select-box li {
+text-indent: 5px;
+margin: 0;
+padding: 0;
+list-style: none;
+display: block;
+cursor: default;
+}
+.dropdown ul li, .edit-select-box li:hover {
+background:#e3e3e3
+}
+.fix-search-click {
+position: relative;
+width:160px;
+float:left
+}
+.select-iframe {
+border: 0;
+_zoom: 1;
+z-index: 9998;
+display: none;
+position: absolute;
+}
+.dropdown h4.disabled {
+border: 1px solid #dcdcdc;
+background: 0;
+}

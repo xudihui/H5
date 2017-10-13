@@ -79,6 +79,7 @@
       copy: "icopy://",
       toolbar: "idocmode://toolbar/{COMMAND}",
       setTitle: "smkapp://setTitle/{TITLE}",
+      getToken: "smkapp://postSMKUserToken",
       actionbutton: "idocmode://actionbutton/{NAME}"
     };
 
@@ -242,6 +243,11 @@
       protocol(Protocols.setTitle.replace("{TITLE}", encodeURI(title)))
     }
 
+    function getToken(callback) {
+      protocol(Protocols.getToken);
+      window.sendTokenToWap = callback;
+    }
+
     function gotonative(page) {
       protocol(Protocols.gotonative.replace("{PAGE}", encodeURI(page)))
     }
@@ -269,6 +275,7 @@
       copy: copy,
       toolbar: toolbar,
       setTitle: setTitle,
+      getToken: getToken,
       gotoNative: gotonative,
       actionbutton: actionbutton,
       enableDebug: enableDebug,

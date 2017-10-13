@@ -15,7 +15,8 @@
       <a class="btn">进入APP登录</a>
       <a class="btn">获取App用户信息</a>
       <a class="btn">获取App版本信息</a>
-      <a class="btn" href='https://cnodejs.org/setting'>跳出去</a>
+      <a class="btn" href='https://cnodejs.org/setting'>跳出去</a>      
+      <a class="btn">获取用户token</a>
 
     </section>
 
@@ -141,6 +142,9 @@ jsBridge.gotoNative(pageName);
     var self = this;
     appendP(self,navigator.userAgent);
   } 
+  btns[6].onclick = function(){
+      jsBridge.getToken(function(i){alert('用户Token:'+i)});
+  }   
 
 //动态插入P标签
 var appendP = function(father,child){

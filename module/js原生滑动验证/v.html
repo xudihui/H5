@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <style>
+           .box{
+            -moz-user-select:none;
+            -webkit-user-select:none;
+            user-select:none;  
+            background:#f8f8f8;
+            border:1px solid #bbb;
+            position:relative;
+            height:40px;
+            overflow:hidden;
+           }
+           .box .panel{
+            background:#ccc;
+            width:40px;
+            height:40px;
+            position:absolute;
+            left:0;
+            top:0;
+            cursor: move;
+           }
+           .box span{
+            color:#777;
+            position:absolute;
+            width:100%;
+            top:0;
+            left:0;
+            text-align:center;
+            height:40px;
+            line-height:40px;
+           }
+        </style>
+  </head>
+  <body>
+  <div class="box">
+    <span>请按住滑块，拖到最右边</span>
+    <div class="panel"></div>
+  </div>
+<script>
+
+  !function(){
+        var Verification = function(o){ 
+            var that = this;
+            this.config = o;
+            this.success = o.success || '';
+            this.control = false;
+            this.sPos = {};
+            this.mPos = {};
+            this.dire;
+            this.wrapLeft = this.config.bind.offsetLeft;
+            this.wrapWidth = this.config.bind.offsetWidth;
+            this.slider = this.config.bind.children[1];
+            this.sliderWidth = this.slider.offsetWidth;
+            this.starter = 0;
+            this.s = function(e){ return that.start(e); };
+            this.m = function(e){ return that.move(e); };
+            this.fn = function(e){ return that.end(e);};
+            // this.config.bind.addEventListener('touchstart', function(){ return that.start(); } ,false);
+            // 这样不对的，event对象只在事件发生的过程中才有效;
+            this.config.bind.addEventListener('touchstart', that.s ,false);
+            this.config.bind.addEventListener('touchmove', that.m ,false);
+            this.config.bind.addEventListener('touchend', that.fn ,false);
+ 
+        }
+        Verification.prototype.init = function(){
+            var that = this;
+            this.config.bind.addEventListener('touchend', that.fn  ,false);
+
+ 
+        } 
+        Verification.prototype.remove = function(){
+            var that = this; 
+            this.config.bind.removeEventListener('touchstart', that.s ,false);
+            this.config.bind.removeEventListener('touchmove', that.m ,false);
+            this.config.bind.removeEventListener('touchend', that.fn ,false);
+ 
+        } 
+        Verification.prototype.start = function(e){
+             this.slider.style.transition = '';
+             var point = e.touches ? e.touches[0] : e;
+             this.sPos.x = point.screenX;
+             this.sPos.y = point.screenY;
+           //  document.getElementById("start").innerHTML = "开始位置是:"+this.sPos.x +" "+ this.sPos.y ;
+ 
+        }
+        Verification.prototype.move = function(e){ 
+            var x = this.mPos.x - this.sPos.x;
+            if(x > this.wrapWidth - this.sliderWidth - 20 ){
+              x = this.wrapWidth - this.sliderWidth;
+            }
+            else if(x < 0){
+              x = 0;
+            }
+            
+           
+            this.slider.style.left = x + 'px'
+            var point = e.touches ? e.touches[0] : e;
+            this.control = true;
+            this.mPos.x = point.screenX;
+            this.mPos.y = point.screenY;
+          //  document.getElementById("move").innerHTML = "您的位置是："+this.mPos.x +" "+ this.mPos.y ;
+ 
+        }
+ 
+        Verification.prototype.end = function(e){
+ 
+            this.config.dire_h  && (!this.control ? this.dire = null : this.mPos.x > this.sPos.x ? this.dire = 'R' : this.dire = 'L')
+            this.config.dire_h  || (!this.control ? this.dire = null : this.mPos.y > this.sPos.y ? this.dire = 'D' : this.dire = 'U')
+            
+            this.control = false;
+            if(parseInt(this.slider.style.left) == this.wrapWidth-this.sliderWidth){
+                this.config.bind.children[0].innerHTML = '验证成功!';
+                this.remove();
+                this.success && this.success();
+            }
+            else{
+              this.slider.style.transition = 'all .5s';
+              this.slider.style.left = '0px';
+            }
+ 
+        }
+ 
+        window.Verification = Verification;
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);// 禁止微信touchmove冲突
+ 
+    }();
+
+
+      test = new Verification({
+        bind: document.querySelector('.box'),
+        // 绑定的DOM对象
+        dire_h: true,
+        //true 判断左右， false 判断上下
+        success: function(o) { //回调事件
+           // alert('验证成功!')    
+        }
+      });
+</script>
+  </body>
+</html>

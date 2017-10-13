@@ -29,7 +29,16 @@
           <td>名称</td>
           <td>示例</td>  
         </tr>  
-       </thead>    
+       </thead>  
+       <tr>
+          <td>获取用户Token</td>
+          <td>
+            <pre>
+jsBridge.getToken(callback);
+//callback 回调匿名函数 如:function(token){alert(token)}
+            </pre>       
+          </td>   
+        </tr>         
         <tr>
           <td>设置标题</td>
           <td>
@@ -80,7 +89,11 @@ jsBridge.gotoNative(pageName);
         <tr>
           <td>用户信息传递</td>
           <td>getDataFromApp</td>    
-        </tr>          
+        </tr>    
+        <tr>
+          <td>用户Token输出</td>
+          <td>sendTokenToWap</td>    
+        </tr>                
       </table>
     
       <h3 id="here-is-an-unordered-list">URL拦截</h3>
@@ -92,9 +105,13 @@ jsBridge.gotoNative(pageName);
         </tr>  
        </thead>    
         <tr>
+          <td>获取用户Token</td>
+          <td>"smkapp://postSMKUserToken"</td>  
+        </tr>
+        <tr>
           <td>设置标题</td>
           <td>"smkapp://setTitle/{TITLE}"</td>  
-        </tr>
+        </tr>        
         <tr>
           <td>分享</td>
           <td>"smkshare:{"shareUrl":"{lineLink}","title":"{shareTitle}","content":"{descContent}","imageUrl":"{imgUrl}"}"</td>    

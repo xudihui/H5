@@ -173,7 +173,7 @@ jsBridge.gotoNative(pageName);
     appendP(self,navigator.userAgent);
   } 
   btns[6].onclick = function(){
-      jsBridge.getToken(function(i){alert('用户Token:'+i)});
+      jsBridge.getToken(function(i){prompt('用户Token:',i)});
   }   
 
 //动态插入P标签
@@ -189,7 +189,7 @@ var appendP = function(father,child){
 
 //从app获取用户信息
 var getDataFromApp = function(data) {
-    alert('执行')
+    //alert('执行')
     btns[3].onclick = function(){
      var self = this;
      appendP(self,data);

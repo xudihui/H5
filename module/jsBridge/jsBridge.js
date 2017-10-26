@@ -247,7 +247,6 @@
       protocol(Protocols.getToken);
       window.sendTokenToWap = function(token){
           if(!token){
-            alert('请先登录再进入！');
             gotonative('LoginView');
           }
           callback(token);

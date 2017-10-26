@@ -10,7 +10,7 @@
   </head>
   <body> 
     <section class="page-header">
-      <h3>jsBridge v0.1</h3>
+      <h3>jsBridge v0.3</h3>
 	    <a class="btn">设置标题SPA</a>
       <a class="btn">分享</a>
       <a class="btn">进入APP登录</a>
@@ -18,7 +18,7 @@
       <a class="btn">获取App版本信息</a>
       <a class="btn" href='https://cnodejs.org/setting'>跳出去</a>      
       <a class="btn">获取用户token</a>
-      <a class="btn" href='https://cdnweb04.96225.com/smkapp/js/jsBridge.0.1.js'>cdn最新地址</a> 
+      <a class="btn" href='https://cdnweb04.96225.com/smkapp/js/jsBridge.0.3.js'>cdn最新地址</a> 
     </section>
 
     <section class="main-content">
@@ -32,7 +32,7 @@
        </thead>    
         <tr>
           <td>引入jsBridge</td>
-          <td><span onclick='prompt("cdn引用地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.1.js")'>[cdn引用]</span> 或 <span onclick='prompt("下载地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.1.js")'>[下载使用]</span>    <---点击查看</td>  
+          <td><span onclick='prompt("cdn引用地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.3.js")'>[cdn引用]</span> 或 <span onclick='prompt("下载地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.1.js")'>[下载使用]</span>    <---点击查看</td>  
         </tr>                
       </table>
       <h3 id="here-is-an-unordered-list">web调用App:</h3>
@@ -49,6 +49,7 @@
             <pre>
 jsBridge.getToken(callback);
 //callback 回调匿名函数 如:function(token){alert(token)}
+//v0.3修正内容：如果在APP内部，并且获取到的token为空，直接唤起APP登录页
             </pre>       
           </td>   
         </tr>         

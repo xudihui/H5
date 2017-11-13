@@ -168,11 +168,11 @@ a.btn_gray,a.btn_gray:hover{background:#aaa;color:#fff;width:100%;display:inline
 
 
 a.btn_red_circle,a.btn_red_circle:hover{border:1px solid #db5252;color:#db5252;text-align:center;width:100%;display:inline-block;height:30px;line-height:30px;overflow:hidden;border-radius:5px;}
-.upload{height:70px;float:right;text-align:center;position:relative;width:70px;line-height:62px;background:#d9d9d9;color:#fff;font-size:60px;overflow:hidden}
+.upload{height:170px;/* float:right; */text-align:center;position:relative;width:170px;line-height: 162px;background:#d9d9d9;color:#fff;font-size: 90px;overflow:hidden;}
 #file_upload{overflow:hidden;padding-top:4px}
 #file_upload .upload{overflow:visible}
-.upload_wrap{padding:7px;border-bottom:5px solid #f2f2f2;color:#000;line-height:70px;}
-.upload input,.upload .img_show,.upload .img_show img{height:70px;position:absolute;width:70px;left:0;top:0;}
+.upload_wrap{padding:7px;/* border-bottom:5px solid #f2f2f2; */color:#000;line-height:70px;}
+.upload input,.upload .img_show,.upload .img_show img{height:170px;position:absolute;width:170px;left:0;top:0;}
 .upload.upload_banner{width:172px}
 .upload.upload_banner input,.upload.upload_banner .img_show,.upload.upload_banner .img_show img{height:70px;position:absolute;width:172px;left:0;top:0;}
 .upload input{opacity:0;filter:alpha(opacity=0);}

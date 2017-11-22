@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>市民卡用户登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<link rel="stylesheet" href="css/mui.min.css">
+		<script src="js/mui.min.js"></script>	
+		<link href="https://at.alicdn.com/t/font_461961_pchelixnfzloko6r.css" rel="stylesheet">
+	</head>
+
+	<body >
+	<div id="signin">
+		<div class="form-title" v-if="!sended">杭州市民卡登录</div>
+		<div class="form-title animated pulse infinite" v-else>请输入收到的验证码登录</div>
+		<div class="input-field">
+			<input type="text" id='email' v-model='tel' @focusout='test($event)'  autocomplete="off" maxLength=11/>
+			<i class="iconfont icon-shoujihao"></i>
+			<label for="email">手机号码</label>
+		</div>
+		<div class="input-field" v-if="sended">
+			<input type="text" id="code" v-model='code' @focusout='test($event)'  maxLength=6/>
+			<i class="iconfont icon-yanzhengma"></i>
+			<label for="code">验证码</label>
+			
+			<p v-if="second == 0" @click='init' class='animated pulse infinite'><span>没收到验证码？点击我返回重发</span></p>
+			<p v-else><span>{{second}}s后可以重新发送</span></p>
+		</div>
+		<div :class="check">
+		 <i class="material-icons">{{sendType=='login' ? '欢迎老用户登陆' : '欢迎新用户注册'}}</i>
+	    </div>
+		
+		
+		<button class="login" @click.stop='send($event)' >发送验证码<span v-if="loading">中<i class='iconfont icon-loading animated infinite rotateIn'></i></span></button>
+		<button class="login" @click='commit' v-if="sended">登录<span v-if="loading">中<i class='iconfont icon-loading animated infinite rotateIn'></i></span></button>
+	</div>
+			
+	</body>
+		<script>
+		
+		        var t = 60 //发送间隔时间
+				var $send = 'https://activity.96225.com/ext_smk_activity/user/sendMsgCode.ext'
+				var $enter = 'https://activity.96225.com/ext_smk_activity/user/loginOrRegist.ext'
+                var main = new Vue({
+				  el: '#signin',
+				  data: {
+				    check:'check',//姓名
+					tel:'',//联系方式
+					code:'',//验证码
+					sended:false,//车型
+					loading:false,
+					sendType:'',//登录类型,
+					second:t,
+					i:null
+				  },
+				  methods: {
+				    test: function (e) {
+						if(e.target.value != ""){
+						  e.target.setAttribute('class','not-empty');
+						}else{
+						  e.target.setAttribute('class','');
+						}
+				    },
+					formatParams: function(data) {//辅助函数，格式化参数
+						var arr = [];
+						for (var name in data) {
+							arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+						}
+						return arr.join("&");
+					},					
+					getQueryString:function(name,str) {   //提取href参数
+						  var str_; //键值对
+						  if(str && location.hash){
+							str_ = str.split('index#!')[1] || ''; //当搜索hash中的键值对时，无值时必须赋值为'',否则无法substr
+						  }
+						  else{
+								str_ = window.location.search;
+						  }
+						  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+						  var r = str_.substr(1).match(reg);
+						  if (r != null) {
+							return unescape(r[2]);
+						  }
+					},				
+					commit: function (e) {
+						 
+                         var self = this;
+					     if(!/^\d{6}$/.test(this.code)){
+						    mui.toast('请输入正确的验证码!')
+						 }else{
+						    self.loading = true
+							mui.ajax($enter,{
+								data:{
+								  request:JSON.stringify({
+								  mobile:self.tel,
+								  userSystem:'0048',
+								  sendType:self.sendType,
+								  veriCode:self.code
+								  })									
+								},
+								dataType:'json',//服务器返回json格式数据
+								type:'post',//HTTP请求类型
+								headers:{'appId':'com.smk.test.test'},	              
+								success:function(data){
+									self.loading = false;
+									if(data.code == 0){
+									   self.check = 'check in';
+									   setTimeout(function(){
+										  if(!self.getQueryString('redirect_uri')){
+											return alert('请把目标地址通过encodeURIComponent转码后以键值形式跟在键名redirect_uri之后访问！')
+										  }
+										  else{
+										    var url = decodeURIComponent(self.getQueryString('redirect_uri'));
+											var URL = '';
+											//第一种情况，如果地址本身存在键值对，需要在第一个问号前插入键值对
+										    if(url.indexOf('?') > -1){ //理论上之应该存在一个问好，存在多个问号需要进行转码，否则会有问题。
+											   var urlArr = url.split('?'); 
+											   URL = urlArr[0] + '?' + self.formatParams(data.response) + '&' + urlArr[1]
+											   /*
+											   index.html#/wallet/lost?type=0   => index.html#/wallet/lost?test=1&type=0  //react router 或者 其它hash路由会直接跟在hash后面
+											   index.html?type=0                => index.html?test=1&type=0
+											   */
+											}
+											//第二种情况，地址本身不存在键值对
+											else{
+											  URL = url + '?' + self.formatParams(data.response)
+											  /*
+											  index.html                        => index.html?test=1
+											  */
+											}
+										  }
+										  location.replace(URL);	
+									   },2000)
+									   
+									}else{
+									   mui.toast(data.msg)
+									}
+								},
+								error:function(xhr,type,errorThrown){
+									mui.toast('请求失败，非常抱歉！')
+									self.loading = false
+								}
+							});								 
+						    
+						 }						 
+				      
+				    },
+					send: function (e) {
+					     var self = this;
+						 var between_ =new Date().getTime() - sessionStorage.getItem('VCODETIME')
+						 
+					     if(!/^1[3|4|5|8]\d{9}$/.test(this.tel)){
+						    mui.toast('请输入正确的手机号!')
+						 }
+						 else if(between_ < (t-10)*1000){
+						    mui.toast('你发送的频率太高了，请'+Math.ceil(50-(between_/1000))+'秒后再试!')
+						 }
+						 else{
+						    self.loading = true;
+							self.second = t;
+							clearInterval(self.i);
+							mui.ajax($send,{
+								data:{
+								  request:JSON.stringify({mobile:self.tel,userSystem:'0048'})									
+								},
+								dataType:'json',//服务器返回json格式数据
+								type:'post',//HTTP请求类型
+								headers:{'appId':'com.smk.test.test'},	              
+								success:function(data){
+									console.log(data);
+									
+									self.loading = false;
+									if(data.code == 0){
+									   sessionStorage.setItem('VCODETIME', new Date().getTime())
+									   self.i = setInterval(function(){
+									      if(self.second == 0){
+										    clearInterval(self.i);
+										  }else{
+										    --self.second;
+										  }
+									      
+									   },1000)
+									   self.sended = true;
+									   self.sendType = data.response.sendType
+									}else{
+									   mui.toast(data.msg)
+									}
+								},
+								error:function(xhr,type,errorThrown){
+									mui.toast('请求失败，非常抱歉！')
+									self.loading = false
+								}
+							});								 
+						    
+						 }
+						 
+						 
+				    },
+					init: function(){
+					   this.sended = false;
+					}
+					
+				  }				  
+				});
+		</script>
+</html>

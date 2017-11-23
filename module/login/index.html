@@ -30,21 +30,25 @@
 			<p v-if="second == 0" @click='init' class='animated pulse infinite'><span>没收到验证码？点击我返回重发</span></p>
 			<p v-else><span>{{second}}s后可以重新发送</span></p>
 		</div>
-		<div :class="check">
-		 <i class="material-icons">{{sendType=='login' ? '欢迎老用户登陆' : '欢迎新用户注册'}}</i>
-	    </div>
 		
 		
-		<button class="login" @click.stop='send($event)' >发送验证码<span v-if="loading">中<i class='iconfont icon-loading animated infinite rotateIn'></i></span></button>
+		
 		<button class="login" @click='commit' v-if="sended">登录<span v-if="loading">中<i class='iconfont icon-loading animated infinite rotateIn'></i></span></button>
+		<button class="login" @click.stop='send($event)' v-else >发送验证码<span v-if="loading">中<i class='iconfont icon-loading animated infinite rotateIn'></i></span></button>
+	
+		<div :class="check">
+		 <i class="material-icons">{{sendType=='login' ? '欢迎老用户登录！' : '欢迎新用户注册！'}}</i>
+	    </div>
 	</div>
 			
 	</body>
 		<script>
 		
 		        var t = 60 //发送间隔时间
-				var $send = 'https://activity.96225.com/ext_smk_activity/user/sendMsgCode.ext'
-				var $enter = 'https://activity.96225.com/ext_smk_activity/user/loginOrRegist.ext'
+				//var BASE = 'http://192.168.23.200:8082'; //测试URL
+				var BASE = 'https://activity.96225.com'; //生产URL
+				var $send = BASE + '/ext_smk_activity/user/sendMsgCode.ext'
+				var $enter = BASE + '/ext_smk_activity/user/loginOrRegist.ext'				
                 var main = new Vue({
 				  el: '#signin',
 				  data: {
@@ -202,6 +206,7 @@
 				    },
 					init: function(){
 					   this.sended = false;
+					   this.code = '';
 					}
 					
 				  }				  

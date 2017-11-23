@@ -25,7 +25,7 @@ body{background:#333;height:100%;
 #signin .input-field input{   margin-bottom: 0;width:calc(100% - 70px); height:4px; font:500 16px/1 'Roboto',sans-serif; padding:0 20px 0 50px; border:none; box-shadow:0 10px 10px rgba(0,0,0,0.25); color:#606060; border-radius:6px; outline:0; overflow:hidden; position:absolute; bottom:0; left:0; transition:all 300ms;}
 
 #signin .forgot-pw{font:600 14px/1 'Roboto',sans-serif; color:#2E3C89; text-decoration:none; float:right; margin:0 0 25px 0; display:block;}
-#signin button.login{min-height: 50px;font-size: 16px;letter-spacing: .2rem;width:100%;padding: 0px 0;border-radius:0;display:block;background:#10BC0F;color:#FFF;border:none;outline:0;cursor:pointer;position:absolute;left:0;bottom:0;}
+#signin button.login{min-height: 50px;font-size: 16px;letter-spacing: .2rem;width:100%;padding: 0px 0;border-radius:0;display:block;background:#10BC0F;color:#FFF;border:none;outline:0;cursor:pointer;/* position:absolute; */left:0;bottom:0;border-radius: 5px;box-shadow: 0 10px 10px rgba(0,0,0,0.25);}
 #signin .check{width:100%; height:100%; background:#10BC0F; position:absolute; top:100%; left:0; text-align:center; visibility:hidden; transition:all 1s;}
 #signin .check.in{visibility:visible; top:0;}
 #signin .check i{
@@ -36,8 +36,8 @@ font-style: normal;
 }
 
 #signin .input-field input:focus{color:#333;}
-#signin .input-field input:focus, #signin .input-field input.not-empty{height:auto; padding:14px 20px 14px 50px;}
-#signin .input-field input:focus + i, #signin .input-field input.not-empty + i{font-size:24px; bottom:25px; height:10px; visibility:visible;}
+#signin .input-field input:focus, #signin .input-field input.not-empty{height:auto; padding:14px 20px 14px 50px;z-index:2}
+#signin .input-field input:focus + i, #signin .input-field input.not-empty + i{font-size:24px; bottom:25px; height:10px; visibility:visible;z-index:3}
 #signin .input-field input:focus + i + label, #signin .input-field input.not-empty + i + label{font-size:12px; margin-top:-15px; opacity:0.7; animation:label 300ms 1;}
 
 @keyframes label{

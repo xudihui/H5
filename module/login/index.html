@@ -18,12 +18,12 @@
 		<div class="form-title" v-if="!sended">杭州市民卡登录</div>
 		<div class="form-title animated pulse infinite" v-else>请输入收到的验证码登录</div>
 		<div class="input-field">
-			<input type="text" id='email' v-model='tel' @focusout='test($event)'  autocomplete="off" maxLength=11/>
+			<input type="tel" id='email' v-model='tel' @focusout='test($event)'  autocomplete="off" maxLength=11/>
 			<i class="iconfont icon-shoujihao"></i>
 			<label for="email">手机号码</label>
 		</div>
 		<div class="input-field" v-if="sended">
-			<input type="text" id="code" v-model='code' @focusout='test($event)'  maxLength=6/>
+			<input type="tel" id="code" v-model='code' @focusout='test($event)'  maxLength=6/>
 			<i class="iconfont icon-yanzhengma"></i>
 			<label for="code">验证码</label>
 			

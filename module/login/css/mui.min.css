@@ -26,7 +26,7 @@ body{background:#333;height:100%;
 
 #signin .forgot-pw{font:600 14px/1 'Roboto',sans-serif; color:#2E3C89; text-decoration:none; float:right; margin:0 0 25px 0; display:block;}
 #signin button.login{min-height: 50px;font-size: 16px;letter-spacing: .2rem;width:100%;padding: 0px 0;border-radius:0;display:block;background:#10BC0F;color:#FFF;border:none;outline:0;cursor:pointer;/* position:absolute; */left:0;bottom:0;border-radius: 5px;box-shadow: 0 10px 10px rgba(0,0,0,0.25);}
-#signin .check{width:100%; height:100%; background:#10BC0F; position:absolute; top:100%; left:0; text-align:center; visibility:hidden; transition:all 1s;}
+#signin .check{width:100%; height:100%; background:#10BC0F; position:absolute; z-index:4;top:100%; left:0; text-align:center; visibility:hidden; transition:all 1s;}
 #signin .check.in{visibility:visible; top:0;}
 #signin .check i{
 color: #FFF;

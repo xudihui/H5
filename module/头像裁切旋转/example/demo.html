@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+	<link href="https://at.alicdn.com/t/font_461961_96dtwnekit3xr.css" rel="stylesheet">
+
+	<style media="screen">
+	    .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-rotate i.icon-xuanzhuan-{
+			position: absolute;
+			/* background: none; */
+			/* color: #aaa; */
+			/* width: 50px; */
+			/* height: 50px; */
+			left: 50%;
+			margin-left: -9px;
+			/* font-size: 30px; */
+			overflow: visible;		
+		}
+        .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left{
+		        position: absolute;
+				left: 50%;
+				margin-left: -120px;
+		}
+		.vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-right{
+				position: absolute;
+				left: 50%;
+				margin-left: -55px;
+				top: 290px;		        
+		
+		}	
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			/*padding: 100px 20%;*/
+			font-family: '微软雅黑';
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		#app {
+			position: relative;
+			text-align: center;
+		}
+
+		.wrap {
+			margin-bottom: 5px;
+		}
+
+		.btn {
+			width: 90%;
+			margin: 5% auto;
+			padding:100px 0;
+			border:1px solid #ccc;
+			display:block;
+			text-align: center;
+			cursor: pointer;
+		}
+		.btn i{
+		    font-size:80px;
+			color:#aaa
+		}
+
+		.avatar {
+			display: block;
+			width: 90%;
+			margin: 5% auto;
+			border:1px solid #ccc;
+		}
+		.vue-image-crop-upload .vicp-wrap{
+		    width: 100%!important;
+			height:auto!important
+		}
+		.code{
+		    width:90%;
+			margin:5px auto;
+			padding:15px 0;
+			border:1px solid #ccc;
+			text-align:center;
+			box-sizing:border-box;
+			-webkit-appearance: none;
+			font-size:16px;
+		}
+		.commit{
+		    width:90%;
+			margin:5px auto;
+			padding:15px 0;
+			text-align:center;
+			box-sizing:border-box;
+			background:#4a7;
+			color:#fff;
+			font-size:16px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div class="item">
+			<a class="btn" @click="toggleShow1" v-if="!avatarUrl1"><i class='iconfont icon-lnicon12'></i></a>
+			<img class="avatar" v-if="avatarUrl1" :src="avatarUrl1" v-show="true" style="display: none;">
+			<input type='text' class='code' placeholder='请输入机器码' />
+			<div class='commit'>提交</div>
+			<tuy-upload
+  			    img-format="jpg"
+				:width="300"
+				:height="400"
+				field="avatar1"
+				:no-circle="true"
+				key="0"
+				:no-rotate="false"
+				:value.sync="show1"
+				:params="otherParams">
+			</tuy-upload>
+		</div>
+	</div>
+    <script>
+	    //磊磊使用的裁切回调函数，方法名不可更改
+		cropSuccess = function(imgData){ //base64图像数据
+		    console.log('成功！',imgData);
+			//这里可以放打印相关逻辑
+		}
+	</script>
+	<script src="demo-src.js"></script>
+</body>
+
+</html>

@@ -12,12 +12,15 @@
 				@dragenter="preventDefault"
 				@click="handleClick"
 				@drop="handleChange">
-                <i class="vicp-icon1" v-show="loading != 1">
+                <i class="vicp-icon1" v-show="loading != 1 && loading !== 1.5">
 					<i class="vicp-icon1-arrow"></i>
 	                <i class="vicp-icon1-body"></i>
 	                <i class="vicp-icon1-bottom"></i>
                 </i>
-                <span class="vicp-hint" v-show="loading !== 1">{{ lang.hint }}</span>
+				<i class="vicp-icon1 iconfont icon-loading" style='font-size: 40px;color: #888;' v-show="loading == 1.5">
+                </i>
+                <span class="vicp-hint" v-show="loading !== 1 && loading !== 1.5">{{ lang.hint }}</span>
+				<span class="vicp-hint" v-if="loading == 1.5">拼命渲染中....</span>
                 <span class="vicp-no-supported-hint" v-show="!isSupported">{{ lang.noSupported }}</span>
                 <input type="file" v-show="false" v-if="step == 1" @change="handleChange" v-el:fileinput>
             </div>
@@ -240,7 +243,7 @@ export default {
             step: 1, //1选择文件 2剪裁 3上传
 
             // 上传状态及进度
-            loading: 0, //0未开始 1正在 2成功 3错误
+            loading: 0, //0未开始 1准备上传图片 1.5正在初始化图片 2成功 3错误
             progress: 0,
 
             // 是否有错误及错误信息
@@ -423,7 +426,11 @@ export default {
 		setStep(no) {
 			// 延时是为了显示动画效果呢，哈哈哈
 			setTimeout(() => {
+                if(no == 1){ //因为增加了1.5的loading 所以要增加判断
+				  this.reset();
+				}			
 				this.step = no;
+				
 			}, 200);
 		},
         /* 图片选择区域函数绑定
@@ -487,7 +494,9 @@ export default {
         setSourceImg(file) {
             let that = this,
                 fr = new FileReader();
+				this.loading = 1.5;
             fr.onload = function(e) {
+			    console.log('初始化结束',new Date().getTime())
                 that.sourceImgUrl = fr.result;
                 that.startCrop();
             }

@@ -4,7 +4,7 @@
   "description": "a vue plgin for image upload and crop（vue图片剪裁上传插件）",
   "main": "upload-2.vue",
   "scripts": {
-    "dev": "gulp",
+    "dev": "gulp default",
     "build": "cross-env NODE_ENV=production gulp js"
   },
   "repository": {

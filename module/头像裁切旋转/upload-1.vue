@@ -22,7 +22,7 @@
                 <span class="vicp-hint" v-show="loading !== 1 && loading !== 1.5">{{ lang.hint }}</span>
 				<span class="vicp-hint" v-if="loading == 1.5">拼命渲染中....</span>
                 <span class="vicp-no-supported-hint" v-show="!isSupported">{{ lang.noSupported }}</span>
-                <input type="file" v-show="false" v-if="step == 1" @change="handleChange" v-el:fileinput>
+                <input type="file" v-show="false" v-if="step == 1" @change="handleChange" v-el:fileinput multiple>
             </div>
             <div class="vicp-error" v-show="hasError">
                 <i class="vicp-icon2"></i> {{ errorMsg }}
@@ -123,6 +123,7 @@ import language from './utils/language.js';
 import mimes from './utils/mimes.js';
 import data2blob from './utils/data2blob.js';
 import effectRipple from './utils/effectRipple.js';
+import EXIF from './utils/EXIF.js';
 
 export default {
     props: {
@@ -495,10 +496,17 @@ export default {
             let that = this,
                 fr = new FileReader();
 				this.loading = 1.5;
+				EXIF.getData(file,function(){
+						var orientation;
+						orientation=EXIF.getTag(this,'Orientation');
+						EXIF.__orientation = orientation;
+					});					
             fr.onload = function(e) {
 			    console.log('初始化结束',new Date().getTime())
                 that.sourceImgUrl = fr.result;
+				
                 that.startCrop();
+				
             }
             fr.readAsDataURL(file);
         },
@@ -819,6 +827,20 @@ export default {
             ctx.fillRect(0, 0, that.width, that.height);
 
             ctx.translate(that.width * 0.5, that.height * 0.5);
+			switch(EXIF.__orientation){
+			//iphone横屏拍摄，此时home键在左侧
+				case 3:
+					degree= degree + 180;
+					break;
+			//iphone竖屏拍摄，此时home键在下方(正常拿手机的方向)
+				case 6:
+					degree= degree + 90;
+					break;
+			//iphone竖屏拍摄，此时home键在上方
+				case 8:
+					degree= degree + 270;
+					break;
+			}				
             ctx.rotate(Math.PI * degree / 180);
             ctx.translate(-that.width * 0.5, -that.height * 0.5);
 

@@ -4,9 +4,9 @@
 /*
 * 使用方法:
 * __ADV({
-*  type:'_0' //展位唯一标识 
+*  id:'_0' //展位唯一标识 抽象出来的广告位，String
 * })
-* @param {object} type 展位的配置,以下划线开头
+* @param {object} id 展位的配置,以下划线开头
 *
 * */
 (function(){

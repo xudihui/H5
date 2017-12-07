@@ -11,14 +11,14 @@
   <body> 
     <section class="page-header">
       <h3>jsBridge v0.4</h3>
-	    <a class="btn">设置标题SPA</a>
+	  <a class="btn">设置标题SPA</a>
       <a class="btn">分享</a>
       <a class="btn">进入APP登录</a>
       <a class="btn">获取App用户信息</a>
       <a class="btn">获取App版本信息</a>
       <a class="btn" href='https://cnodejs.org/setting'>跳出去</a>      
-      <a class="btn">获取用户token</a>
-      <a class="btn" href='https://cdnweb04.96225.com/smkapp/js/jsBridge.0.4.js'>cdn最新地址</a>	  
+      <a class="btn">获取用户token</a>  
+	  <a class="btn">pushWindow</a>
     </section>
 
     <section class="main-content">
@@ -177,7 +177,9 @@ jsBridge.gotoNative(pageName);
   btns[6].onclick = function(){
       jsBridge.getToken(function(i){prompt('用户Token:',i)});
   }   
-
+  btns[7].onclick = function(){
+      location.href='smkapp://pushWindow:{"url":"https://activity.96225.com/exthtml/AppVirtualCard/pages/index.html?type=help","title":"元迪"}'
+  }  
 //动态插入P标签
 var appendP = function(father,child){
   var p = document.createElement("p");

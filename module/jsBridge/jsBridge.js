@@ -65,7 +65,7 @@
     Protocols = {
       setshareinfo: 'smkshare:{"shareUrl":"{lineLink}","title":"{shareTitle}","content":"{descContent}","imageUrl":"{imgUrl}"}',
       share: "ishare://",
-      gotonative: "smknative:open{PAGE}",      
+      gotonative: "smknative://open{PAGE}",      
       updateprofile: "iupdateprofile://",
       encrypt: "iencrypt://",
       pushview: "ipushview://{TYPE}",

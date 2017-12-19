@@ -277,6 +277,7 @@
 		*
 		* */		
 		var _url = 'https://activity.96225.com/ext_smk_activity/advertise/getAdByType.ext',//接口地址
+		    __url = 'http://192.168.23.200:8082/ext_smk_activity/advertise/getAdByType.ext',//测试接口
 			width = window.innerWidth,//屏幕宽度
 			height = width*82/446,//等比广告图高度
 			layout = { //广告位分布信息
@@ -300,9 +301,6 @@
 				}
 			},
 			__ADV = function(option){
-				if(option.debug){
-					var _url = 'http://192.168.23.200:8082/ext_smk_activity/advertise/getAdByType.ext'
-				}
 				var target = layout[option['id']];
 				if (window.XMLHttpRequest) {
 					var xhr = new XMLHttpRequest();
@@ -363,7 +361,7 @@
 					_temp.push(attr + '=' + _filter(_data[attr]));
 				}
 				var _sData = _temp.join('&');
-				xhr.open('POST', _url, true);
+				xhr.open('POST', option.debug ? __url : _url, true);
 				//设置请求头，以表单形式提交数据
 				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				xhr.setRequestHeader('appId', "com.smk.test.test");

@@ -25,7 +25,7 @@
 			<p v-if="second == 0" @click='send($event)' class=''><span>获取验证码</span></p>
 			<p v-else><span>{{second}}s后可以重新发送</span></p>
 		</div>
-		<button class="login" @click='commit' v-if='!loading' v-html='btn'></button>
+		<button :class="sendType ? 'login' : 'login gray'" @click='commit' v-if='!loading' v-html='btn'></button>
 		<div class="bar mint active" data-percent="100" v-else>拼命加载中</div>
 		<p class='login_tip' @click='tip("请确保您的手机可以正常收取短信，如有问题请咨询 96225")'>
 		 获取不到验证码？

@@ -5,16 +5,12 @@
 	  ADV:'https://activity.96225.com/ext_smk_activity/advertise/getAdByType.ext',//广告位接口地址
 	  _ADV:'http://192.168.23.200:8082/ext_smk_activity/advertise/getAdByType.ext',//广告位测试接口
 	  ACCEPT:'http://hzycsl.zjzwfw.gov.cn/bsdt-app/api/accept.do',//受理接口
-	  FINISH:'http://hzycsl.zjzwfw.gov.cn/bsdt-app/api/finish.do',//办结接口
-  }
+	  FINISH:'http://hzycsl.zjzwfw.gov.cn/bsdt-app/api/finish.do'//办结接口
+  };
   
  
   var md5 = (function () {
-  'use strict'
-  /*
-  * Add integers, wrapping at 2^32. This uses 16-bit operations internally
-  * to work around bugs in some JS interpreters.
-  */
+  
   function safeAdd (x, y) {
     var lsw = (x & 0xffff) + (y & 0xffff)
     var msw = (x >> 16) + (y >> 16) + (lsw >> 16)

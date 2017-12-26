@@ -10,7 +10,7 @@
   </head>
   <body> 
     <section class="page-header">
-      <h3>jsBridge v0.4</h3>
+      <h3>jsBridge v0.7</h3>
 	  <a class="btn">设置标题SPA</a>
       <a class="btn">分享</a>
       <a class="btn">进入APP登录</a>
@@ -22,7 +22,7 @@
     </section>
 
     <section class="main-content">
-     <h3 id="here-is-an-unordered-list">市民卡APP&H5交互步骤:</h3>
+     <h3 >市民卡APP&H5交互步骤:</h3>
       <table>
        <thead>
         <tr>
@@ -32,10 +32,10 @@
        </thead>    
         <tr>
           <td>引入jsBridge</td>
-          <td><span onclick='prompt("cdn引用地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.4.js")'>[cdn引用]</span> 或 <span onclick='prompt("下载地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.4.js")'>[下载使用]</span>    <---点击查看</td>  
+          <td><span onclick='prompt("cdn引用地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.7.js")'>[cdn引用]</span> </td>  
         </tr>                
       </table>
-      <h3 id="here-is-an-unordered-list">web调用App:</h3>
+      <h3 >web调用App:</h3>
       <table>
        <thead>
         <tr>
@@ -43,12 +43,27 @@
           <td>示例</td>  
         </tr>  
        </thead>  
+        <tr>
+          <td>政务网数据统计<a href='#tuy'>参考字典</a></td>
+          <td>
+            <pre>
+jsBridge.govMatter({
+  type:'finish',
+  sxbm:'33015020000000000000-SP-0009',
+  mobile:'13213123120'
+})
+//type[String]：统计类型('accept'代表受理、'finish'代表办结)
+//sxbm[String]: 事项编号(参考字典)
+//mobile[String]: 当前用户手机号
+            </pre>       
+          </td>    
+        </tr>  	   
        <tr>
           <td>获取用户Token</td>
           <td>
             <pre>
 jsBridge.getToken(callback);
-//callback 回调匿名函数 如:function(token){alert(token)}
+//callbackp[Function]: 回调匿名函数(function(token){alert(token)})
 //v0.3修正内容：如果在APP内部，并且获取到的token为空，直接唤起APP登录页
             </pre>       
           </td>   
@@ -58,7 +73,7 @@ jsBridge.getToken(callback);
           <td>
             <pre>
 jsBridge.setTitle(title);
-//title 标题名称
+//title[String]: 标题名称
             </pre>       
           </td>   
         </tr>
@@ -81,15 +96,15 @@ jsBridge.setShareInfo({
           <td>
             <pre>
 jsBridge.gotoNative(pageName);
-//pageName：登录/注册/退出等
-//v0.4修正内容：修复IOS登录 schema地址跳转，修复完：IOS在已登录的状态下无法唤起登录
+//pageName[String]: 登录/注册/退出
+//v0.7修正内容：修复IOS登录 schema地址跳转，修复完：IOS在已登录的状态下无法唤起登录
             </pre>       
           </td>    
         </tr>           
       </table>
 
     
-      <h3 id="here-is-an-unordered-list">App调用web定义的方法(必须暴露在全局)</h3>
+      <h3 >App调用web定义的方法(必须暴露在全局)</h3>
       <table>
        <thead>
         <tr>
@@ -111,7 +126,7 @@ jsBridge.gotoNative(pageName);
         </tr>                
       </table>
     
-      <h3 id="here-is-an-unordered-list">URL拦截</h3>
+      <h3 >URL拦截</h3>
       <table>
        <thead>
         <tr>
@@ -136,9 +151,70 @@ jsBridge.gotoNative(pageName);
           <td>"smknative:open{PAGE}"</td>    
         </tr>           
       </table>   
+	  
+      <h3 id='tuy' name="tuy">附录字典(事项编号)</h3>
+      <table>
+       <thead>
+        <tr>
+          <td>事项名称</td>
+          <td>事项编码</td>  
+        </tr>  
+       </thead>    
+        <tr>
+          <td>市民卡账户充值/账户充值卡销售</td>
+          <td>33015020000000000000-SP-0005</td>  
+        </tr>
+        <tr>
+          <td>参保缴费凭证查询</td>
+          <td>33015020000000000000-SP-0007</td>  
+        </tr> 
+        <tr>
+          <td>缴费记录</td>
+          <td>33015020000000000000-SP-0008</td>  
+        </tr> 
+        <tr>
+          <td>医保查询</td>
+          <td>33015020000000000000-SP-0009</td>  
+        </tr> 
+        <tr>
+          <td>医保账户共济</td>
+          <td>33015020000000000000-SP-0023</td>  
+        </tr> 
+        <tr>
+          <td>充话费</td>
+          <td>33015020000000000000-SP-0013</td>  
+        </tr> 
+        <tr>
+          <td>水费</td>
+          <td>33015020000000000000-SP-0014</td>  
+        </tr> 
+        <tr>
+          <td>燃气费</td>
+          <td>33015020000000000000-SP-0015</td>  
+        </tr> 
+        <tr>
+          <td>电视费</td>
+          <td>33015020000000000000-SP-0016</td>  
+        </tr> 		
+        <tr>
+          <td>宽带费</td>
+          <td>33015020000000000000-SP-0017</td>  
+        </tr> 
+        <tr>
+          <td>停车费</td>
+          <td>33015020000000000000-SP-0018</td>  
+        </tr> 
+        <tr>
+          <td>市民卡交易查询</td>
+          <td>33015020000000000000-SP-0021</td>  
+        </tr> 		
+        <tr>
+          <td>市民卡服务网点查询</td>
+          <td>33015020000000000000-SP-0022</td>  
+        </tr> 			
+      </table>  	  
 
-
-<h3 id="here-is-an-unordered-list">代码贡献</h3>
+<h3>代码贡献</h3>
 <ul>
   <li>欢迎大家通过<a href="https://github.com/xudihui/H5/issues" > issue </a>反馈使用问题</li>
   <li><a href="https://github.com/xudihui/H5/pulls" > pulls </a>贡献您的代码！</li>

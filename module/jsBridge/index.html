@@ -19,6 +19,7 @@
       <a class="btn" href='https://cnodejs.org/setting'>跳出去</a>      
       <a class="btn">获取用户token</a>  
 	  <a class="btn">pushWindow</a>
+	  <a class="btn">我是iphoneX吗</a>
     </section>
 
     <section class="main-content">
@@ -221,11 +222,14 @@ jsBridge.gotoNative(pageName);
 </ul>         
 </section>
 <script type="text/javascript">
-
   var $ = function(el){
         return document.querySelectorAll(el)
   }
   var btns = $('.btn');
+  var isIphoneX = function (){
+		return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+  }
+  
   btns[0].onclick = function(){
      var title = prompt('请输入新title名','hello Word!');
      if(title){
@@ -255,7 +259,11 @@ jsBridge.gotoNative(pageName);
   }   
   btns[7].onclick = function(){
       location.href='smkapp://pushWindow:{"url":"https://activity.96225.com/exthtml/AppVirtualCard/pages/index.html?type=help","title":"元迪"}'
-  }  
+  }
+  btns[8].onclick = function(){
+	var self = this;
+	appendP(self,isIphoneX() ? '土豪您好，确实是iphoneX！' : '很遗憾，你不是土豪');
+  }    
 //动态插入P标签
 var appendP = function(father,child){
   var p = document.createElement("p");

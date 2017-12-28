@@ -281,9 +281,11 @@
       _frame.setAttribute("frameborder", "0");
       if (src) {
         _frame.setAttribute("src", src)
-      } else {
-        document.documentElement.appendChild(_frame)
       }
+	  document.documentElement.appendChild(_frame);
+	  var timer = setTimeout(function() {
+        _frame && removeFrame(_frame)
+      }, 10000);
       return _frame
     }
 
@@ -308,7 +310,8 @@
       }
     }
     return {
-      init: init
+      init: init,
+	  getFrame: getFrame
     }
   })();
 
@@ -634,6 +637,10 @@
 	}
 	
 	function govMatter(opt){
+		        var _opt = [];
+				//深复制
+                _opt.push(opt.mobile);	
+				_opt.push(opt.sxbm);
 		        var opt = opt || {};
 				if(!opt.sxbm || !opt.mobile){
 					return alert('sxbm和mobile必填！')
@@ -675,12 +682,15 @@
 				};			
                 if(opt.type == 'accept'){
 					sessionStorage.setItem('__projId',opt.projId);
-					J.init(CONFIG.ACCEPT + '?' + formatParams(accept));
+					var target = encodeURIComponent(CONFIG.ACCEPT + '?' + formatParams(accept));
 				}
 				else{
 					sessionStorage.removeItem('__projId');
-					J.init(CONFIG.FINISH + '?' + formatParams(finish));
+					var target = encodeURIComponent(CONFIG.FINISH + '?' + formatParams(finish)) ;
 				}	
+				var mta = encodeURIComponent(JSON.stringify(_opt));
+				J.getFrame('https://activity.96225.com/exthtml/mobile_links/govMatter/index.html' + '?redirect_uri=' + target + '&mta=' + mta + '&type=' + opt.type);
+				
 	}
 
     return {

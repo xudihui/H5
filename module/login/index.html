@@ -152,7 +152,7 @@
 					     var self = this;
 						 var between_ =new Date().getTime() - sessionStorage.getItem('VCODETIME')
 						 
-					     if(!/^1[3|4|5|8]\d{9}$/.test(this.tel)){
+					     if(!/^1[3|4|5|7|8]\d{9}$/.test(this.tel)){
 						    mui.toast('请输入正确的手机号!')
 						 }
 						 else if(between_ < (t-10)*1000){

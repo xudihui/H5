@@ -4,8 +4,8 @@
   var CONFIG = {
 	  ADV:'https://activity.96225.com/ext_smk_activity/advertise/getAdByType.ext',//广告位接口地址
 	  _ADV:'http://192.168.23.200:8082/ext_smk_activity/advertise/getAdByType.ext',//广告位测试接口
-	  ACCEPT:'http://hzycsl.zjzwfw.gov.cn/bsdt-app/api/accept.do',//受理接口
-	  FINISH:'http://hzycsl.zjzwfw.gov.cn/bsdt-app/api/finish.do'//办结接口
+	  GOV:'https://activity.96225.com/ext_smk_activity/zww/sendMsg.ext',//政务网生产接口
+	  _GOV:'https://activity.96225.com/win_smk_activity/zww/sendMsg.ext'//政务网测试接口
   };
   
  
@@ -290,7 +290,9 @@
     }
 
     function removeFrame(frame) {
-      frame && frame.parentNode.removeChild(frame)
+		if(frame && frame.parentNode){
+			frame.parentNode.removeChild(frame);
+		}
     }
 
     function init(command, single, noframe) {
@@ -580,15 +582,16 @@
 					}
 				},
 				_2:{
-					type:'creditCardRecords',
+					type:'cityActivity',//城市报名活动报名结果页
 					style:'position:absolute;bottom:15px',
 					callBack:function(data,node){
-						//回调函数，预留
+						
 					}
 				}
 			},
 			__ADV = function(option){
 				var target = layout[option['id']];
+				var _parentNode = option['parentNode'] || document.querySelector('body');
 				__ajax({
 					url: option.debug ? CONFIG._ADV : CONFIG.ADV,
 					type: "POST",
@@ -604,16 +607,17 @@
 							var node  = document.createElement('img');
 							node.setAttribute('width',width);
 							node.setAttribute('height',height);
+							node.setAttribute('id','_adv'+option['id']);
 							node.setAttribute('style',target.style||'');
 							node.setAttribute('src',data.response.picture.indexOf('http') == 0 ? data.response.picture : (data.response.rFdsUrl + data.response.picture) ); //如果是http开头，直接采用，否则直接拼接
 							node.addEventListener('click', function(){
 								location.href = data.response.pictureUrl; //暂时H5这边都是入口页，如果广告位在结果页，并且是hash路由的话，一定一定要确保结果页能保留状态！！！！
 							}, false);
-							document.querySelector('body').appendChild(node);
+							_parentNode.appendChild(node);
 							target.callBack && target.callBack(data,node) //有回调的话，执行回调,传入响应数据。
-							window.onpopstate = function(){ //针对React项目的hash路由，每次路由变更，应当卸载广告图（因为广告图添加在body的根节点）
+							window.onhashchange = function(){ //针对React/F7/Vue项目的hash路由，每次路由变更，应当卸载广告图（因为广告图添加在body的根节点）
 								if(node){
-									document.querySelector('body').removeChild(node);
+									_parentNode.removeChild(node);
 									node = null;
 								}
 							}
@@ -682,15 +686,19 @@
 				};			
                 if(opt.type == 'accept'){
 					sessionStorage.setItem('__projId',opt.projId);
-					var target = encodeURIComponent(CONFIG.ACCEPT + '?' + formatParams(accept));
 				}
 				else{
 					sessionStorage.removeItem('__projId');
-					var target = encodeURIComponent(CONFIG.FINISH + '?' + formatParams(finish)) ;
 				}	
-				var mta = encodeURIComponent(JSON.stringify(_opt));
-				J.getFrame('https://activity.96225.com/exthtml/mobile_links/govMatter/index.html' + '?redirect_uri=' + target + '&mta=' + mta + '&type=' + opt.type);
-				
+				__ajax({
+					url: opt.debug ? CONFIG._GOV : CONFIG.GOV,
+					type: "POST",
+					headers:{appId:"com.smk.test.test"},
+					dataType: "json",
+					data: {
+					 request:JSON.stringify({type:opt.type == 'accept' ? 'S' : 'finish',data:formatParams(finish)}) 
+					}
+				})	
 	}
 
     return {

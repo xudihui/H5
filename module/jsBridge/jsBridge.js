@@ -4,8 +4,7 @@
   var CONFIG = {
 	  ADV:'https://activity.96225.com/ext_smk_activity/advertise/getAdByType.ext',//广告位接口地址
 	  _ADV:'http://192.168.23.200:8082/ext_smk_activity/advertise/getAdByType.ext',//广告位测试接口
-	  GOV:'https://activity.96225.com/ext_smk_activity/zww/sendMsg.ext',//政务网生产接口
-	  _GOV:'https://activity.96225.com/win_smk_activity/zww/sendMsg.ext'//政务网测试接口
+	  GOV:'https://activity.96225.com/exthtml/mobile_links/govMatter/index.html'//政务网生产接口
   };
   
  
@@ -690,15 +689,12 @@
 				else{
 					sessionStorage.removeItem('__projId');
 				}	
-				__ajax({
-					url: opt.debug ? CONFIG._GOV : CONFIG.GOV,
-					type: "POST",
-					headers:{appId:"com.smk.test.test"},
-					dataType: "json",
-					data: {
-					 request:JSON.stringify({type:opt.type == 'accept' ? 'S' : 'finish',data:formatParams(finish)}) 
-					}
-				})	
+				var data = {
+					type:opt.type,
+					mta:encodeURIComponent(JSON.stringify(_opt)),
+					data:encodeURIComponent(JSON.stringify({type:opt.type == 'accept' ? 'S' : 'finish',data:formatParams(finish)}))
+				}
+				J.getFrame(CONFIG.GOV + '?' + formatParams(data))
 	}
 
     return {

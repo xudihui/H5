@@ -60,6 +60,35 @@
 						  e.target.setAttribute('class','');
 						}
 				    },
+					end:function(self,data){
+						self.check = 'check in';
+						setTimeout(function(){
+						  if(!self.getQueryString('redirect_uri')){
+							return alert('请把目标地址通过encodeURIComponent转码后以键值形式跟在键名redirect_uri之后访问！')
+						  }
+						  else{
+							var url = decodeURIComponent(self.getQueryString('redirect_uri'));
+							var URL = '';
+							//第一种情况，如果地址本身存在键值对，需要在第一个问号前插入键值对
+							if(url.indexOf('?') > -1){ //理论上之应该存在一个问好，存在多个问号需要进行转码，否则会有问题。
+							   var urlArr = url.split('?'); 
+							   URL = urlArr[0] + '?' + self.formatParams(data.response) + '&' + urlArr[1]
+							   /*
+							   index.html#/wallet/lost?type=0   => index.html#/wallet/lost?test=1&type=0  //react router 或者 其它hash路由会直接跟在hash后面
+							   index.html?type=0                => index.html?test=1&type=0
+							   */
+							}
+							//第二种情况，地址本身不存在键值对
+							else{
+							  URL = url + '?' + self.formatParams(data.response)
+							  /*
+							  index.html                        => index.html?test=1
+							  */
+							}
+						  }
+						  location.replace(URL);	
+						},10)
+					},
 					tip: function(msg){
 					    mui.alert(msg)
 					},
@@ -106,34 +135,35 @@
 								success:function(data){
 									
 									if(data.code == 0){
-									   self.check = 'check in';
-									   setTimeout(function(){
-										  if(!self.getQueryString('redirect_uri')){
-											return alert('请把目标地址通过encodeURIComponent转码后以键值形式跟在键名redirect_uri之后访问！')
-										  }
-										  else{
-										    var url = decodeURIComponent(self.getQueryString('redirect_uri'));
-											var URL = '';
-											//第一种情况，如果地址本身存在键值对，需要在第一个问号前插入键值对
-										    if(url.indexOf('?') > -1){ //理论上之应该存在一个问好，存在多个问号需要进行转码，否则会有问题。
-											   var urlArr = url.split('?'); 
-											   URL = urlArr[0] + '?' + self.formatParams(data.response) + '&' + urlArr[1]
-											   /*
-											   index.html#/wallet/lost?type=0   => index.html#/wallet/lost?test=1&type=0  //react router 或者 其它hash路由会直接跟在hash后面
-											   index.html?type=0                => index.html?test=1&type=0
-											   */
-											}
-											//第二种情况，地址本身不存在键值对
-											else{
-											  URL = url + '?' + self.formatParams(data.response)
-											  /*
-											  index.html                        => index.html?test=1
-											  */
-											}
-										  }
-										  location.replace(URL);	
-									   },2000)
-									   
+									  if(self.getQueryString('ineedtoken') == 'true'){
+											  mui.ajax($token,{
+														data:{
+														  request:JSON.stringify({
+															relUserId:data.response.userId
+														  })									
+														},
+														dataType:'json',//服务器返回json格式数据
+														type:'post',//HTTP请求类型
+														headers:{'appId':'com.smk.test.test'},	              
+														success:function(data_){		
+															if(data_.code == 0){
+															   data.response.token = data_.response.accessToken;
+															   self.end(self,data)
+															}else{
+															   mui.toast(data_.msg)
+															}
+															self.loading = false;
+														},
+														error:function(xhr,type,errorThrown){
+															mui.toast('请求失败，非常抱歉！')
+															self.loading = false
+														}
+													});	
+									  }
+									  else{
+									    self.end(self,data);
+										self.loading = false;
+									  }
 									}else{
 									   self.loading = false;
 									   mui.toast(data.msg)
@@ -143,8 +173,7 @@
 									mui.toast('请求失败，非常抱歉！')
 									self.loading = false
 								}
-							});								 
-						    
+							});								  
 						 }						 
 				      
 				    },
@@ -212,7 +241,8 @@
 				}else{
 				   var BASE = 'https://activity.96225.com'; //生产URL
 				}
-				var $send = BASE + '/ext_smk_activity/user/sendMsgCode.ext'
-				var $enter = BASE + '/ext_smk_activity/user/loginOrRegist.ext'					
+				var $send = BASE + '/ext_smk_activity/user/sendMsgCode.ext';
+				var $enter = BASE + '/ext_smk_activity/user/loginOrRegist.ext';	
+                var $token = BASE + '/ext_smk_activity/citySec/getAccessToken.ext';			
 		</script>
 </html>

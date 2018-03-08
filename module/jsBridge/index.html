@@ -10,7 +10,7 @@
   </head>
   <body> 
     <section class="page-header">
-      <h3>jsBridge v0.9</h3>
+      <h3>jsBridge v1.5</h3>
 	  <a class="btn">设置标题SPA</a>
       <a class="btn">分享</a>
       <a class="btn">进入APP登录</a>
@@ -33,7 +33,7 @@
        </thead>    
         <tr>
           <td>引入jsBridge</td>
-          <td><span onclick='prompt("cdn引用地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.0.9.js")'>[cdn引用]</span> </td>  
+          <td><span onclick='prompt("cdn引用地址：","https://cdnweb04.96225.com/smkapp/js/jsBridge.1.5.js")'>[cdn引用]</span> </td>  
         </tr>                
       </table>
       <h3 >web调用App:</h3>
@@ -44,6 +44,22 @@
           <td>示例</td>  
         </tr>  
        </thead>  
+       <tr>
+          <td>唤起市民卡APP支付</td>
+          <td>
+            <pre>
+jsBridge.sdkPay(opt);
+            </pre>       
+          </td>   
+        </tr>  	 
+       <tr>
+          <td>唤起市民卡wap支付</td>
+          <td>
+            <pre>
+jsBridge.wapPay(opt);
+            </pre>       
+          </td>   
+        </tr>  		
         <tr>
           <td>政务网数据统计<a href='#tuy'>参考字典</a></td>
           <td>

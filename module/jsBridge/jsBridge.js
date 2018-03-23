@@ -843,6 +843,26 @@
 			}
 		}
 
+		/**
+		 * 获取openId
+		 *
+		 * @param {redirect_uri} 重定向url
+		 * @returns
+		 */
+		var getOpenId = function(redirect_uri) {
+			
+			//第一次转码
+			var _redirect_uri = encodeURIComponent(redirect_uri);
+			
+			//拿到code换取openId跳转
+			var _getOpenId_uri = 'https://weixin.96225.com/exthtml/mobile_links/login/o.html?redirect_uri=' + _redirect_uri;
+			
+			//微信跳转，第二次转码
+			var _wechat_uri = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx40e324205510b531&redirect_uri=' + encodeURIComponent(_getOpenId_uri) + '&response_type=code&scope=snsapi_base#wechat_redirect';
+			
+			location.replace(_wechat_uri);
+		}		
+		
     return {
       issmkApp: issmkApp,
       userInfo: userInfo,
@@ -869,7 +889,8 @@
 	  initAdvertise: adv(),
 	  govMatter:govMatter,
 	  sdkPay:sdkPay,
-	  wapPay:wapPay
+	  wapPay:wapPay,
+	  getOpenId:getOpenId
     }
   }
   window.jsBridge = SmkApp(J.init)

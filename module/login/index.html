@@ -232,7 +232,38 @@
 				  created: function () {
 					var self = this;
 					var btn = self.getQueryString('btn');
-					self.btn = btn ? unescape(btn) : '登录'
+					var code = self.getQueryString('code');
+					self.btn = btn ? unescape(btn) : '登录';
+					if(code){
+					      self.loading = true;
+						  mui.ajax($token,{
+									data:{
+									  request:JSON.stringify({
+										code:code
+									  })									
+									},
+									dataType:'json',//服务器返回json格式数据
+									type:'post',//HTTP请求类型
+									headers:{'appId':'com.smk.test.test'},	              
+									success:function(data_){		
+										if(data_.code == 0){
+										   var data = {
+										      response:data_.response
+										   }
+										   console.log(data)
+										   //self.end(self,data)
+										}else{
+										   mui.toast(data_.msg)
+										}
+										self.loading = false;
+									},
+									error:function(xhr,type,errorThrown){
+										mui.toast('请求失败，非常抱歉！')
+										self.loading = false
+									}
+								});	
+					}
+					
 				  }				  
 				});
 		        var t = 59 //发送间隔时间
@@ -243,6 +274,7 @@
 				}
 				var $send = BASE + '/ext_smk_activity/user/sendMsgCode.ext';
 				var $enter = BASE + '/ext_smk_activity/user/loginOrRegist.ext';	
-                var $token = BASE + '/ext_smk_activity/citySec/getAccessToken.ext';			
+                var $token = BASE + '/ext_smk_activity/citySec/getAccessToken.ext';	
+                var $getOpenId = 'https://weixin.96225.com/smk_weixin/user/getOpenId.ext';					
 		</script>
 </html>

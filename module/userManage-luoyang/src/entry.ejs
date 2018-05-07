@@ -1,0 +1,30 @@
+<% htmlWebpackPlugin.options.headScripts = htmlWebpackPlugin.options.headScripts || [] %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="A admin dashboard application demo built upon Ant Design and Dva.js">
+  <title>antd admin</title>
+  <link href="https://cdn.bootcss.com/antd/2.13.8/antd.min.css" rel="stylesheet">
+  <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+  <![endif]-->
+  <% for (item of htmlWebpackPlugin.options.headScripts) { %>
+    <script src="<%= item %>"></script>
+  <% } %>
+</head>
+
+<body>
+<script >
+  var $BASE = 'http://192.168.23.200:8080/ext_smk_activity/'; // http://115.236.162.166:18081/ext_smk_activity/   外网访问地址
+ //var $BASE = 'http://115.236.162.166:18081/ext_smk_activity/';
+</script>
+  <div id="root"></div>
+</body>
+
+
+</html>
